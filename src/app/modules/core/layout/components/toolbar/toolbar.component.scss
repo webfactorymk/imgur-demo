@@ -1,0 +1,12 @@
+@import "var";
+
+:host {
+  z-index: $toolbar-z-index;
+}
+
+.layout-toolbar {
+  height: $sidenav-toolbar-height;
+  min-height: $sidenav-toolbar-height;
+  max-height: $sidenav-toolbar-height;
+  overflow: hidden;
+}

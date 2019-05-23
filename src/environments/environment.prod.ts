@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  imgurClientId: process.env.IMGUR_CLIENT_ID
 };

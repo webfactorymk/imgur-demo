@@ -1,0 +1,32 @@
+@import "var";
+
+.layout-container {
+  height: 100%;
+
+  &.mat-drawer-opened {
+
+  }
+
+  .mat-drawer {
+    width: $sidenav-width;
+    max-width: $sidenav-width;
+  }
+
+  .mat-drawer-content.drawer-content {
+    overflow: hidden;
+  }
+
+  .layout-wrapper {
+    height: 100%;
+    max-width: 100%;
+
+    .layout-content-wrapper {
+      height: 100%;
+
+      .layout-main-container {
+        position: relative;
+        flex: 1;
+      }
+    }
+  }
+}
