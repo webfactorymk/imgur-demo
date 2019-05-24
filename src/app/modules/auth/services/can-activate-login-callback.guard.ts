@@ -7,8 +7,8 @@ export class CanActivateLoginCallbackGuard implements CanActivate {
   constructor(private _router: Router) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!route.fragment) {
+  canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (!activatedRouteSnapshot.fragment) {
       console.log('CanActivate failed for CanActivateLoginCallbackGuard, navigating to login');
       this._router.navigate(['/auth/login']);
       return false;

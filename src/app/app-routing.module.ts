@@ -4,6 +4,11 @@ import {LayoutComponent} from './modules/core/layout/layout.component';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
+  },
+  {path: 'login', redirectTo: 'auth/login', pathMatch: 'full'},
+  {
     path: '',
     component: LayoutComponent,
     children: [
@@ -15,12 +20,7 @@ const routes: Routes = [
       {path: '**', redirectTo: 'imgur', pathMatch: 'full'}
     ],
     canActivate: []
-  },
-  {
-    path: 'auth',
-    loadChildren: './modules/auth/auth.module#AuthModule'
-  },
-  {path: 'login', redirectTo: 'auth/login', pathMatch: 'full'}
+  }
 ];
 
 @NgModule({

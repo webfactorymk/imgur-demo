@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthToken} from '../../model/auth-token.model';
 import {AuthService} from '../../services/auth.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'ngd-callback',
@@ -17,22 +18,18 @@ export class CallbackComponent implements OnInit {
               private _authService: AuthService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._parseAndStoreAuthDetails();
   }
 
+  /**
+   * We get the ActivatedRouteSnapshot instead of subscribing since this data we are not interested in the url change at this time
+   * If there is no fragment in the URL, then we won't even pass the CanActivateLoginCallbackGuard
+   * When we get the fragment, we generally remove it from the URL in the browser so the user does not have time to look at it
+   * Removing it basically means opening the same route, while replacing the old one with the actual authToken data
+   */
   private _parseAndStoreAuthDetails(): void {
-    // We get the snapshot instead of subscribing because this data won't change
-    // so there is no need to observe the activatedRoute fragment
     const routeFragment = this._activatedRoute.snapshot.fragment;
-    if (!routeFragment) {
-      this._router.navigate(['/auth/login']);
-      // this._router.navigate returns a Promise so we stop executing here
-      return;
-    }
-
-    // If we have a fragment, we should show the same component and parse the fragment,
-    // but remove the fragment from the URL since we don't need the end user looking at it
     this._router.navigate([], {replaceUrl: true, preserveFragment: false});
 
     const authToken = this._createAuthToken(new URLSearchParams(routeFragment));
@@ -45,7 +42,7 @@ export class CallbackComponent implements OnInit {
     return AuthToken.buildFrom({
       accessToken: urlSearchParams.get('access_token'),
       refreshToken: urlSearchParams.get('refresh_token'),
-      expiresIn: urlSearchParams.get('expires_in'),
+      expiresIn: moment().add(+urlSearchParams.get('expires_in'), 'seconds').valueOf(),
       tokenType: urlSearchParams.get('token_type'),
       accountUsername: urlSearchParams.get('account_username'),
       accountId: urlSearchParams.get('account_id'),

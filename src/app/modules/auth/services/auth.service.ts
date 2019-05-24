@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AuthToken} from '../model/auth-token.model';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,35 +8,36 @@ import {BehaviorSubject} from 'rxjs';
 export class AuthService {
   private static AUTH_TOKEN_STORAGE_KEY_NAME = 'auth-token';
 
-  private _authTokenSource: BehaviorSubject<AuthToken>;
+  private _authTokenSubject: BehaviorSubject<AuthToken>;
+  authToken$: Observable<AuthToken>;
 
   constructor() {
     const authToken = this._retrieveAuthDetails();
     console.log('Deserialized authToken', authToken);
-    this._authTokenSource = new BehaviorSubject<AuthToken>(authToken);
+
+    this._authTokenSubject = new BehaviorSubject<AuthToken>(authToken);
+    this.authToken$ = this._authTokenSubject.asObservable();
   }
 
-  private get authTokenSource(): AuthToken {
-    return this._authTokenSource.getValue();
-  }
-
-  private set authTokenSource(authToken: AuthToken) {
-    this._authTokenSource.next(authToken);
+  getCurrentAuthToken(): AuthToken {
+    return this._authTokenSubject.getValue();
   }
 
   getAccessToken(): string {
-    const authToken = this.authTokenSource;
+    const authToken = this.getCurrentAuthToken();
     return authToken ? authToken.accessToken : null;
   }
 
   isLoggedIn(): boolean {
-    const authToken: AuthToken = this.authTokenSource;
+    const authToken: AuthToken = this.getCurrentAuthToken();
+    console.log(authToken);
+    console.log(authToken && !authToken.isTokenExpired());
     return authToken && !authToken.isTokenExpired();
   }
 
   login(authToken: AuthToken): void {
     this._storeAuthDetails(authToken);
-    this.authTokenSource = authToken;
+    this._authTokenSubject.next(authToken);
   }
 
   private _storeAuthDetails(authToken: AuthToken): void {
@@ -59,9 +60,9 @@ export class AuthService {
     return AuthToken.buildFrom(JSON.parse(storedToken));
   }
 
-  logout() {
+  logout(): void {
     this._clearAuthDetails();
-    this.authTokenSource = null;
+    this._authTokenSubject.next(null);
   }
 
   private _clearAuthDetails(): void {

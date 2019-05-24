@@ -1,0 +1,10 @@
+@import "var";
+
+.image-scroll-viewport {
+  height: 90vh;
+  padding: 10px 0;
+
+  .image-scroll-item {
+    max-height: 30%;
+  }
+}

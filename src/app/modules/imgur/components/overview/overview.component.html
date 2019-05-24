@@ -1,3 +1,10 @@
-<p>
-  overview works!
-</p>
+<cdk-virtual-scroll-viewport itemSize="50" class="image-scroll-viewport flex flex-column flex--justify-between">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="image-scroll-item col-4"
+           *cdkVirtualFor="let item of (accountImages$ | async); trackBy: trackByImageIdFn">
+        <img class="img-fluid" [src]="item.link" [attr.alt]="item.title"/>
+      </div>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

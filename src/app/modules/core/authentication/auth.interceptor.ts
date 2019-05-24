@@ -3,9 +3,11 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {AuthService} from './auth.service';
+import {AuthService} from '../../auth/services/auth.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(private _router: Router,
@@ -13,12 +15,14 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('Interceptor activated');
     request = this._addAuthenticationDetailsToHeaders(request);
 
     return next.handle(request)
       .pipe(
         catchError((err: HttpErrorResponse) => {
           if (err.status === 401) {
+            this._authService.logout();
             this._router.navigate(['/auth/login']);
           }
 
