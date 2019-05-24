@@ -1,0 +1,13 @@
+<div class="pointer" *ngIf="item" (click)="notifyShowDetails()">
+  <img class="img-thumbnail" [src]="item.link" [alt]="item.title"/>
+  <div class="text-center">
+    <h5>{{item.title}}</h5>
+  </div>
+  <div class="flex flex-row flex--justify-between">
+    <span class="flex-1">{{item.datetime | date:'medium'}}</span>
+    <span class="text-right flex-1">
+      <mat-icon>visibility</mat-icon>
+      {{item.views}}
+    </span>
+  </div>
+</div>

@@ -21,7 +21,13 @@ export class ImgurHttpService {
     return this._httpClient.get(endpoint)
       .pipe(
         map((response: any) =>
-          response.data.map((imageJSON) => new ImgurImage(imageJSON)))
+          response.data.map((imageJSON) =>
+            new ImgurImage(Object.assign(imageJSON, {
+                datetime: imageJSON.datetime * 1000
+              })
+            )
+          )
+        )
       );
   }
 

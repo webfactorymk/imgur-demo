@@ -1,14 +1,18 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {OverviewComponent} from './components/overview/overview.component';
+import {GalleryComponent} from './components/gallery/gallery.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'overview', pathMatch: 'full'},
+  {path: '', redirectTo: 'gallery', pathMatch: 'full'},
   {
-    path: 'overview',
-    component: OverviewComponent
+    path: 'gallery',
+    component: GalleryComponent
   },
+  {
+    path: 'gallery',
+    component: GalleryComponent
+  }
 ];
 
 @NgModule({
