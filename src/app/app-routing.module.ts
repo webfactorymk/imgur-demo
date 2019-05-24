@@ -7,8 +7,12 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-
-      // {path: '', redirectTo: '/auth/login', pathMatch: 'full'}
+      {
+        path: 'imgur',
+        loadChildren: './modules/imgur/imgur.module#ImgurModule'
+      },
+      {path: '', redirectTo: 'imgur', pathMatch: 'full'},
+      {path: '**', redirectTo: 'imgur', pathMatch: 'full'}
     ],
     canActivate: []
   },
@@ -16,10 +20,7 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: './modules/auth/auth.module#AuthModule'
   },
-  // {
-  //   path: 'auth',
-  //   loadChildren: './modules/auth/auth.module#AuthModule'
-  // }
+  {path: 'login', redirectTo: 'auth/login', pathMatch: 'full'}
 ];
 
 @NgModule({

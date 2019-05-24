@@ -9,6 +9,7 @@ import {LoginComponent} from './components/login/login.component';
 import {CallbackComponent} from './components/callback/callback.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {
     path: 'login',
     component: LoginComponent,
