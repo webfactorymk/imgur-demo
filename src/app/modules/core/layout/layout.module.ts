@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {LayoutComponent} from './layout.component';
-import {MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {LayoutService} from './services/layout.service';
 
@@ -13,7 +13,8 @@ import {LayoutService} from './services/layout.service';
     RouterModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [LayoutService]
 })

@@ -14,4 +14,8 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleSidenav() {
+    this._layoutService.toggleSidenav();
+  }
+
 }

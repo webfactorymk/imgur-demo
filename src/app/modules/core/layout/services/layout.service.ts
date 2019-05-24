@@ -12,11 +12,35 @@ export class LayoutService {
     this.sidenavState$ = this._sidenavState.asObservable();
   }
 
-  get sidenavState(): SidenavState {
+  private get sidenavState(): SidenavState {
     return this._sidenavState.getValue();
   }
 
-  set sidenavState(sidenavState: SidenavState) {
+  private set sidenavState(sidenavState: SidenavState) {
     this._sidenavState.next(sidenavState);
   }
+
+  toggleSidenav(): void {
+    this.sidenavState = this.sidenavState === SidenavState.Expanded
+      ? SidenavState.Collapsed
+      : SidenavState.Expanded;
+  }
+
+  expandSidenav(): void {
+    this.sidenavState = SidenavState.Expanded;
+  }
+
+  isSidenavExpanded(): boolean {
+    return this.sidenavState === SidenavState.Expanded;
+  }
+
+
+  collapseSidenav(): void {
+    this.sidenavState = SidenavState.Collapsed;
+  }
+
+  isSidenavCollapsed(): boolean {
+    return this.sidenavState === SidenavState.Collapsed;
+  }
+
 }

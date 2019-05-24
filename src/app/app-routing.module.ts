@@ -1,20 +1,25 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {LayoutComponent} from './modules/core/layout/layout.component';
-import {LoginComponent} from './modules/auth/components/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      {
-        path: 'auth',
-        loadChildren: './modules/auth/auth.module#AuthModule'
-      },
-      {path: '', redirectTo: '/auth/login', pathMatch: 'full'}
-    ]
-  }
+
+      // {path: '', redirectTo: '/auth/login', pathMatch: 'full'}
+    ],
+    canActivate: []
+  },
+  {
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
+  },
+  // {
+  //   path: 'auth',
+  //   loadChildren: './modules/auth/auth.module#AuthModule'
+  // }
 ];
 
 @NgModule({

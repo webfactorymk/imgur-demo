@@ -1,11 +1,17 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-12">
-      <div class="jumbotron">
+    <div class="col-md-12 col-lg-6 offset-lg-3">
+
+      <div class="login-wrapper flex flex-column align-items-center">
         <h1>Sign in with Imgur</h1>
-        <img class="img-fluid" src="/assets/img/imgur_logo.png" alt="Imgur logo"/>
-        <button (click)="authorize()">Sign in</button>
+        <div>
+          <img class="img-fluid" src="/assets/img/imgur_logo.png" alt="Imgur logo"/>
+        </div>
+        <div>
+          <button class="btn btn-outline-primary" (click)="commenceAuthorization()">Sign in</button>
+        </div>
       </div>
+
     </div>
   </div>
 </div>

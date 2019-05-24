@@ -1,0 +1,28 @@
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex--justify-between {
+  justify-content: space-between;
+}
+
+.pointer {
+  cursor: pointer;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.semi-bold {
+  font-weight: 500;
+}

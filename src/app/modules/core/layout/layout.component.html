@@ -1,11 +1,21 @@
 <mat-drawer-container class="layout-container">
-  <mat-drawer mode="side" opened #drawer>Drawer</mat-drawer>
+  <mat-drawer class="layout-sidenav"
+              [mode]="sidenavMode"
+              [opened]="(sidenavState$ | async) == sidenavStates.Expanded"
+              (closedStart)="sidenavClosedStart()">
+    <div>
+
+
+      <span class="flex"></span>
+    </div>
+  </mat-drawer>
   <mat-drawer-content class="drawer-content">
 
     <div class="layout-wrapper">
       <ngd-toolbar></ngd-toolbar>
 
       <div class="main-container">
+        <button (click)="logout()">Logout</button>
         <router-outlet></router-outlet>
       </div>
     </div>

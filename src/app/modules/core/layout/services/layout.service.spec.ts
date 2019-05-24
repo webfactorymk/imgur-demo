@@ -14,4 +14,13 @@ describe('LayoutService', () => {
       done();
     });
   });
+
+  it('set sidenavState should correctly update the sidenavState value', (done: DoneFn) => {
+    service.sidenavState = SidenavState.Collapsed;
+
+    service.sidenavState$.subscribe((sidenavState) => {
+      expect(sidenavState).toBe(SidenavState.Collapsed);
+      done();
+    });
+  });
 });
