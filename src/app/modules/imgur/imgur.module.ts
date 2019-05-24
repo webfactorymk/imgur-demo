@@ -3,9 +3,9 @@ import {CommonModule} from '@angular/common';
 import {ImgurRoutingModule} from './imgur-routing.module';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatDialogModule, MatIconModule} from '@angular/material';
-import {GalleryComponent} from './components/gallery/gallery.component';
-import {GalleryPreviewItemComponent} from './components/gallery/gallery-preview-item/gallery-preview-item.component';
-import {GalleryItemDetailsDialogComponent} from './components/gallery/gallery-item-details-dialog/gallery-item-details-dialog.component';
+import {ImagesPreviewComponent} from './components/images-preview/images-preview.component';
+import {ImagePreviewItemComponent} from './components/images-preview/image-preview-item/image-preview-item.component';
+import {GalleryItemDetailsDialogComponent} from './components/images-preview/gallery-item-details-dialog/gallery-item-details-dialog.component';
 
 @NgModule({
   imports: [
@@ -16,8 +16,8 @@ import {GalleryItemDetailsDialogComponent} from './components/gallery/gallery-it
     MatIconModule
   ],
   declarations: [
-    GalleryComponent,
-    GalleryPreviewItemComponent,
+    ImagesPreviewComponent,
+    ImagePreviewItemComponent,
     GalleryItemDetailsDialogComponent
   ],
   entryComponents: [

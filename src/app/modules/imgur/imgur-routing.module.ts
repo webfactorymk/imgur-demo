@@ -1,17 +1,13 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {GalleryComponent} from './components/gallery/gallery.component';
+import {ImagesPreviewComponent} from './components/images-preview/images-preview.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'gallery', pathMatch: 'full'},
+  {path: '', redirectTo: 'images-preview', pathMatch: 'full'},
   {
-    path: 'gallery',
-    component: GalleryComponent
-  },
-  {
-    path: 'gallery',
-    component: GalleryComponent
+    path: 'images-preview',
+    component: ImagesPreviewComponent
   }
 ];
 

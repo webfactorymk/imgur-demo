@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {ImgurImage} from '../../../models/imgur-image.model';
+import {ImgurImage} from '../../../common/imgur-image.model';
 
 @Component({
   selector: 'ngd-gallery-preview-item',
-  templateUrl: './gallery-preview-item.component.html',
-  styleUrls: ['./gallery-preview-item.component.scss'],
+  templateUrl: './image-preview-item.component.html',
+  styleUrls: ['./image-preview-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GalleryPreviewItemComponent {
+export class ImagePreviewItemComponent {
   @Input() item: ImgurImage;
   @Output() details = new EventEmitter<ImgurImage>();
 

@@ -1,17 +1,17 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {ImgurHttpService} from '../../services/imgur-http.service';
-import {ImgurImage} from '../../models/imgur-image.model';
+import {ImgurHttpService} from '../../common/imgur-http.service';
+import {ImgurImage} from '../../common/imgur-image.model';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {GalleryItemDetailsDialogComponent} from './gallery-item-details-dialog/gallery-item-details-dialog.component';
 
 @Component({
-  selector: 'ngd-imgur-gallery',
-  templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.scss'],
+  selector: 'ngd-imgur-images-preview',
+  templateUrl: './images-preview.component.html',
+  styleUrls: ['./images-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GalleryComponent implements OnInit {
+export class ImagesPreviewComponent implements OnInit {
   accountImages$: Observable<Array<ImgurImage>>;
 
   constructor(private _matDialog: MatDialog,
@@ -34,7 +34,7 @@ export class GalleryComponent implements OnInit {
 
   showItemDetails(item: ImgurImage) {
     this._matDialog.open(GalleryItemDetailsDialogComponent, {
-      maxHeight: '80vh',
+      maxHeight: '85vh',
       data: item
     });
   }
