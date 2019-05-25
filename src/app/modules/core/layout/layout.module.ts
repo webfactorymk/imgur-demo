@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {LayoutComponent} from './layout.component';
+import {LayoutComponent} from './components/layout/layout.component';
 import {MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {SidenavService} from './services/sidenav.service';

@@ -1,13 +1,15 @@
 <div><a [routerLink]="['../upload']">Upload new image</a></div>
 
-<cdk-virtual-scroll-viewport class="image-scroll-viewport flex flex-column flex--justify-between"
-                             itemSize="50" (scrolledIndexChange)="onScrolledIndexChange($event)">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="image-scroll-item col-xs-12 col-sm-6 col-md-4 col-lg-3"
-           *cdkVirtualFor="let item of (accountImages$ | async); trackBy: trackByImageIdFn">
-        <ngd-gallery-preview-item [item]="item" (details)="showItemDetails($event)"></ngd-gallery-preview-item>
+<div style="position: relative; height: 100%">
+  <cdk-virtual-scroll-viewport class="image-scroll-viewport flex flex-column flex--justify-between"
+                               itemSize="50" (scrolledIndexChange)="onScrolledIndexChange($event)">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="image-scroll-item col-xs-12 col-sm-6 col-md-4 col-lg-3"
+             *cdkVirtualFor="let item of (accountImages$ | async); trackBy: trackByImageIdFn">
+          <ngd-gallery-preview-item [item]="item" (details)="showItemDetails($event)"></ngd-gallery-preview-item>
+        </div>
       </div>
     </div>
-  </div>
-</cdk-virtual-scroll-viewport>
+  </cdk-virtual-scroll-viewport>
+</div>

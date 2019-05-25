@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
-import {SidenavService} from './services/sidenav.service';
-import {SidenavState} from './models/sidenav-state';
-import {SubscriptionUtils} from '../../shared/util/subscription.utils';
-import {AuthService} from '../../auth/services/auth.service';
-import {SidenavVisibilityState} from './models/sidenav-visibility-state.enum';
+import {SidenavService} from '../../services/sidenav.service';
+import {SidenavState} from '../../models/sidenav-state';
+import {SubscriptionUtils} from '../../../../shared/util/subscription.utils';
+import {AuthService} from '../../../../auth/services/auth.service';
+import {SidenavVisibilityState} from '../../models/sidenav-visibility-state.enum';
 
 @Component({
   selector: 'ngd-layout',

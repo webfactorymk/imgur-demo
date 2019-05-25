@@ -1,5 +1,7 @@
 @import "var";
 
 .layout-toolbar {
+  position: fixed;
+  z-index: 100;
   overflow: hidden;
 }

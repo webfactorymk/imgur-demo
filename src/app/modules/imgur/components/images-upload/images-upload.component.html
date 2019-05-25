@@ -1,4 +1,4 @@
-<ngd-loading-overlay [isLoading]="false"></ngd-loading-overlay>
+<ngd-loading-overlay [isLoading]="isImageUploadInProgress"></ngd-loading-overlay>
 
 <div class="container-fluid p-3">
   <div class="row">
@@ -37,18 +37,16 @@
         <file-drop class="image-file-drop" [multiple]="false" (onFileDrop)="fileDropped($event)">
           <input id="imageUploader" class="hidden-input-file" #fileUploadInput
                  name="uploadImage" type="file" accept="image/*"
-                 (change)="selectedImageChanged(fileUploadInput)"/>
+                 (change)="selectedImageChanged(fileUploadInput?.files[0])"/>
           <div class="pointer flex flex-column align-items-center" (click)="openUploadDialog($event)">
-            <p class="drag-files-label">You can drop a new image here</p>
-            <p>or</p>
-            <p>Click to open the image selection dialog</p>
+            <div class="drag-files-label">Drop an image or click to open selection dialog</div>
           </div>
         </file-drop>
 
 
         <ng-container *ngIf="imageUploadForm.get('image') as imageField">
           <div class="canvas-wrapper" *ngIf="imageField.valid">
-            <canvas-whiteboard class="canvas-whiteboard" #canvasWhiteboard
+            <canvas-whiteboard class="canvas-whiteboard" style="width: 100%; height: 400px"
                                [imageUrl]="imageField.value"
                                [options]="canvasWhiteboardOptions">
             </canvas-whiteboard>

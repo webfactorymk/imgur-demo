@@ -19,9 +19,10 @@ export class ImagesUploadComponent implements OnInit {
   @ViewChild('fileUploadInput') fileUploadInput: ElementRef;
 
   imageUploadForm: FormGroup;
+  isImageUploadInProgress = false;
 
   canvasWhiteboardOptions: CanvasWhiteboardOptions = {
-    aspectRatio: 0.6,
+    aspectRatio: 0.5,
 
     drawButtonEnabled: false,
     drawingEnabled: true,
@@ -61,14 +62,12 @@ export class ImagesUploadComponent implements OnInit {
     });
   }
 
-  selectedImageChanged(imageInput: any) {
-    const file = imageInput && imageInput.files ? imageInput.files[0] : imageInput;
-
-    if (file && (/^image\//.test(file.type))) {
-      const readFileSubscription = FileUtils.observeFileReading(file)
+  selectedImageChanged(selectedImage: File) {
+    if (selectedImage && (/^image\//.test(selectedImage.type))) {
+      const readFileSubscription = FileUtils.observeFileReading(selectedImage)
         .subscribe((fileDataUrl: string) => {
           readFileSubscription.unsubscribe();
-          imageInput.value = '';
+          this.fileUploadInput.nativeElement.value = '';
 
           this.imageUploadForm.get('image').setValue(fileDataUrl);
           this.canvasWhiteboardOptions = Object.assign(this.canvasWhiteboardOptions, {
@@ -80,7 +79,7 @@ export class ImagesUploadComponent implements OnInit {
           readFileSubscription.unsubscribe();
         });
     } else {
-      imageInput.value = '';
+      this.fileUploadInput.nativeElement.value = '';
       this._snackBar.open('The uploaded file is not a valid image.', 'Dismiss');
     }
   }
@@ -94,8 +93,12 @@ export class ImagesUploadComponent implements OnInit {
   uploadImage() {
     this._saveLatestCanvasEditedImage();
 
-    if (this.imageUploadForm.valid) {
+    if (this.imageUploadForm.valid && !this.isImageUploadInProgress) {
+      this.isImageUploadInProgress = true;
+      this._changeDetector.detectChanges();
+
       const formValue = this.imageUploadForm.value;
+
       this._imgurHttpService.uploadImage({
         image: formValue.image.split(',')[1],
         title: formValue.title,
@@ -103,6 +106,7 @@ export class ImagesUploadComponent implements OnInit {
         type: 'base64'
       })
         .subscribe(() => {
+          this.isImageUploadInProgress = false;
           this.imageUploadForm.reset();
           this._changeDetector.detectChanges();
 
@@ -111,17 +115,21 @@ export class ImagesUploadComponent implements OnInit {
           this.openRedirectConfirmationDialog();
 
         }, (err) => {
+          this.isImageUploadInProgress = false;
           this._snackBar.open(`Image upload failed. The error was: ${err.message}`, 'Dismiss');
+          this._changeDetector.detectChanges();
         });
     }
   }
 
 
   fileDropped(event: UploadEvent) {
-    if (event && event.files && event.files.length && event.files[0].fileEntry.isFile) {
-      (event.files[0].fileEntry as FileSystemFileEntry).file(fileInfo => {
-        this.selectedImageChanged(fileInfo);
-      });
+    if (event && event.files && event.files.length) {
+      if (event.files[0].fileEntry.isFile) {
+        (event.files[0].fileEntry as FileSystemFileEntry).file(fileInfo => {
+          this.selectedImageChanged(fileInfo);
+        });
+      }
     }
   }
 

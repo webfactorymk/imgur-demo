@@ -1,0 +1,29 @@
+@import "var";
+
+.layout-container {
+  height: 100%;
+
+  .layout-sidenav {
+    width: $sidenav-width;
+    max-width: $sidenav-width;
+    background-color: $sidenav-background_color;
+  }
+
+  //.layout-content-wrapper {
+  //  overflow: hidden;
+  //}
+
+  .layout-wrapper {
+    //height: 100%;
+    max-width: 100%;
+
+    .layout-main-container {
+      padding-top: $toolbar-height;
+      position: relative;
+      flex: 1;
+      //position: relative;
+      //flex: 1;
+      //overflow: auto;
+    }
+  }
+}

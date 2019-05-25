@@ -29,8 +29,8 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig, MatSnackBarModule} fro
   ]
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-    if (parentModule) {
+  constructor(@Optional() @SkipSelf() coreModule: CoreModule) {
+    if (coreModule) {
       throw new Error(
         'CoreModule is already loaded. Import it in the AppModule only.');
     }
