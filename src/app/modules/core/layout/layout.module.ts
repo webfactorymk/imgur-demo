@@ -4,7 +4,7 @@ import {RouterModule} from '@angular/router';
 import {LayoutComponent} from './layout.component';
 import {MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {ToolbarComponent} from './components/toolbar/toolbar.component';
-import {LayoutService} from './services/layout.service';
+import {SidenavService} from './services/sidenav.service';
 
 @NgModule({
   declarations: [LayoutComponent, ToolbarComponent],
@@ -16,7 +16,7 @@ import {LayoutService} from './services/layout.service';
     MatIconModule,
     MatButtonModule
   ],
-  providers: [LayoutService]
+  providers: [SidenavService]
 })
 export class LayoutModule {
 }

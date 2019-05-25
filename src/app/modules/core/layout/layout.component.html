@@ -1,15 +1,14 @@
-<mat-drawer-container class="layout-container">
-  <mat-drawer class="layout-sidenav"
-              [mode]="sidenavMode"
-              [opened]="(sidenavState$ | async) == sidenavStates.Expanded"
-              (closedStart)="sidenavClosedStart()">
+<mat-sidenav-container class="layout-container">
+  <mat-sidenav class="layout-sidenav"
+               *ngIf="(sidenavState$ | async) as sidenavState"
+               [mode]="sidenavState.mode"
+               [opened]="sidenavState.value === sidenavVisibilityStates.Expanded"
+               (closedStart)="sidenavClosedStart()">
     <div>
-
-
       <span class="flex"></span>
     </div>
-  </mat-drawer>
-  <mat-drawer-content class="drawer-content">
+  </mat-sidenav>
+  <mat-sidenav-content class="drawer-content">
 
     <div class="layout-wrapper">
       <ngd-toolbar></ngd-toolbar>
@@ -19,5 +18,6 @@
         <router-outlet></router-outlet>
       </div>
     </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

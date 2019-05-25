@@ -1,4 +1,4 @@
-export enum SidenavState {
+export enum SidenavVisibilityState {
   Expanded = 'expanded',
   Collapsed = 'collapsed'
 }

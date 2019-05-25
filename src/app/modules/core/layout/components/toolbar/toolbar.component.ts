@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LayoutService} from '../../services/layout.service';
+import {SidenavService} from '../../services/sidenav.service';
 
 @Component({
   selector: 'ngd-toolbar',
@@ -8,7 +8,7 @@ import {LayoutService} from '../../services/layout.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor(private _layoutService: LayoutService) {
+  constructor(private _layoutService: SidenavService) {
   }
 
   ngOnInit() {

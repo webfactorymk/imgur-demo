@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthToken} from '../model/auth-token.model';
+import {AuthToken} from '../models/auth-token.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
@@ -35,6 +35,17 @@ export class AuthService {
     return authToken && !authToken.isTokenExpired();
   }
 
+  private _retrieveAuthDetails(): AuthToken {
+    const storedToken = localStorage.getItem(AuthService.AUTH_TOKEN_STORAGE_KEY_NAME);
+    console.log('authToken in localStorage', storedToken);
+
+    if (!storedToken) {
+      return null;
+    }
+
+    return AuthToken.buildFrom(JSON.parse(storedToken));
+  }
+
   login(authToken: AuthToken): void {
     this._storeAuthDetails(authToken);
     this._authTokenSubject.next(authToken);
@@ -47,17 +58,6 @@ export class AuthService {
     }
 
     localStorage.setItem(AuthService.AUTH_TOKEN_STORAGE_KEY_NAME, JSON.stringify(authToken));
-  }
-
-  private _retrieveAuthDetails(): AuthToken {
-    const storedToken = localStorage.getItem(AuthService.AUTH_TOKEN_STORAGE_KEY_NAME);
-    console.log('authToken in localStorage', storedToken);
-
-    if (!storedToken) {
-      return null;
-    }
-
-    return AuthToken.buildFrom(JSON.parse(storedToken));
   }
 
   logout(): void {

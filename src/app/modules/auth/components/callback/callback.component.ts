@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthToken} from '../../model/auth-token.model';
+import {AuthToken} from '../../models/auth-token.model';
 import {AuthService} from '../../services/auth.service';
 import * as moment from 'moment';
 

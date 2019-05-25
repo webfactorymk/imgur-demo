@@ -34,7 +34,7 @@ export class ImagesPreviewComponent implements OnInit {
 
   showItemDetails(item: ImgurImage) {
     this._matDialog.open(GalleryItemDetailsDialogComponent, {
-      maxHeight: '85vh',
+      maxHeight: '95vh',
       data: item
     });
   }
