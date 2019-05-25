@@ -5,20 +5,34 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatDialogModule, MatIconModule} from '@angular/material';
 import {ImagesPreviewComponent} from './components/images-preview/images-preview.component';
 import {ImagePreviewItemComponent} from './components/images-preview/image-preview-item/image-preview-item.component';
+import {ImgurComponent} from './components/imgur/imgur.component';
 import {GalleryItemDetailsDialogComponent} from './components/images-preview/gallery-item-details-dialog/gallery-item-details-dialog.component';
+import {ImagesUploadComponent} from './components/images-upload/images-upload.component';
+import {CanvasWhiteboardModule} from 'ng2-canvas-whiteboard';
+import {LoadingOverlayModule} from '../shared/loading-overlay/loading-overlay.module';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FileDropModule} from 'ngx-file-drop';
+import {ConfirmationDialogModule} from '../shared/confirmation-dialog/confirmation-dialog.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ImgurRoutingModule,
     ScrollingModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    LoadingOverlayModule,
+    CanvasWhiteboardModule,
+    FileDropModule,
+    ConfirmationDialogModule
   ],
   declarations: [
     ImagesPreviewComponent,
     ImagePreviewItemComponent,
-    GalleryItemDetailsDialogComponent
+    GalleryItemDetailsDialogComponent,
+    ImgurComponent,
+    ImagesUploadComponent
   ],
   entryComponents: [
     GalleryItemDetailsDialogComponent

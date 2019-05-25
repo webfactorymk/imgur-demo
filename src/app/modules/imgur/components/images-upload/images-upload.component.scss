@@ -1,0 +1,32 @@
+.canvas-wrapper {
+  position: relative;
+  max-height: 400px;
+
+  .canvas-whiteboard {
+    /deep/ .canvas_wrapper_div {
+      //border: 0;
+    }
+
+    ///deep/ .canvas_whiteboard_buttons {
+    //  top: 0;
+    //  position: static;
+    //  text-align: right;
+    //}
+  }
+}
+
+
+.image-file-drop {
+  /deep/ .ngx-file-drop__drop-zone {
+    border: 2px solid #000;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+
+    /deep/ .ngx-file-drop__content {
+      height: auto;
+      color: #000;
+      flex-direction: column;
+    }
+  }
+}

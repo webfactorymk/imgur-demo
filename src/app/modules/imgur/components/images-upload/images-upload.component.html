@@ -1,0 +1,62 @@
+<ngd-loading-overlay [isLoading]="false"></ngd-loading-overlay>
+
+<div class="container-fluid p-3">
+  <div class="row">
+    <div class="col-12">
+
+      <form class="needs-validation" [formGroup]="imageUploadForm" (submit)="uploadImage()">
+        <div class="text-right">
+          <button type="submit" class="btn btn-outline-primary"
+                  [disabled]="!imageUploadForm.valid">
+            Upload
+          </button>
+        </div>
+
+        <ng-container *ngIf="imageUploadForm.get('title') as titleField">
+          <div class="form-group">
+            <label for="title">Title*</label>
+            <input id="title" class="form-control"
+                   [class.is-valid]="titleField.touched && titleField.valid"
+                   [class.is-invalid]="titleField.touched && !titleField.valid"
+                   placeholder="Enter the image title"
+                   formControlName="title"/>
+            <div class="invalid-feedback" *ngIf="titleField.touched">
+              Please enter the image title
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" class="form-control resize-vertical"
+                    placeholder="Enter the image description"
+                    formControlName="description">
+        </textarea>
+        </div>
+
+        <file-drop class="image-file-drop" [multiple]="false" (onFileDrop)="fileDropped($event)">
+          <input id="imageUploader" class="hidden-input-file" #fileUploadInput
+                 name="uploadImage" type="file" accept="image/*"
+                 (change)="selectedImageChanged(fileUploadInput)"/>
+          <div class="pointer flex flex-column align-items-center" (click)="openUploadDialog($event)">
+            <p class="drag-files-label">You can drop a new image here</p>
+            <p>or</p>
+            <p>Click to open the image selection dialog</p>
+          </div>
+        </file-drop>
+
+
+        <ng-container *ngIf="imageUploadForm.get('image') as imageField">
+          <div class="canvas-wrapper" *ngIf="imageField.valid">
+            <canvas-whiteboard class="canvas-whiteboard" #canvasWhiteboard
+                               [imageUrl]="imageField.value"
+                               [options]="canvasWhiteboardOptions">
+            </canvas-whiteboard>
+          </div>
+        </ng-container>
+
+      </form>
+
+    </div>
+  </div>
+</div>

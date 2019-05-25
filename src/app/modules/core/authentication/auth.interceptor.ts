@@ -15,7 +15,6 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Interceptor activated');
     request = this._addAuthenticationDetailsToHeaders(request);
 
     return next.handle(request)

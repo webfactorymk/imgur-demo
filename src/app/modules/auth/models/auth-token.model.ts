@@ -13,11 +13,8 @@ export class AuthToken {
     authToken.tokenType = jsonObject.tokenType;
     authToken.accountUsername = jsonObject.accountUsername;
     authToken.accountId = jsonObject.accountId;
-
     authToken.expiresIn = jsonObject.expiresIn;
-    console.log(authToken.expiresIn);
-    console.log(new Date(authToken.expiresIn));
-    console.log('expiresIn', jsonObject.expiresIn);
+
     return authToken;
   }
 

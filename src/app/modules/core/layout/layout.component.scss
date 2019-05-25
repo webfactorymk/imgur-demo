@@ -16,6 +16,8 @@
   .layout-wrapper {
     height: 100%;
     max-width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .layout-content-wrapper {
       height: 100%;

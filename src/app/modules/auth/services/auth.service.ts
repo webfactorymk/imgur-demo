@@ -13,8 +13,6 @@ export class AuthService {
 
   constructor() {
     const authToken = this._retrieveAuthDetails();
-    console.log('Deserialized authToken', authToken);
-
     this._authTokenSubject = new BehaviorSubject<AuthToken>(authToken);
     this.authToken$ = this._authTokenSubject.asObservable();
   }
@@ -30,8 +28,6 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const authToken: AuthToken = this.getCurrentAuthToken();
-    console.log(authToken);
-    console.log(authToken && !authToken.isTokenExpired());
     return authToken && !authToken.isTokenExpired();
   }
 

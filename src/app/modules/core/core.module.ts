@@ -3,18 +3,28 @@ import {CommonModule} from '@angular/common';
 import {LayoutModule} from './layout/layout.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './authentication/auth.interceptor';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig, MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    LayoutModule
+    LayoutModule,
+    MatSnackBarModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
+    },
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {
+        duration: 5000,
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom'
+      } as MatSnackBarConfig
     }
   ]
 })

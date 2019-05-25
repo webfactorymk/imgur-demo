@@ -23,12 +23,17 @@ export class ImgurHttpService {
         map((response: any) =>
           response.data.map((imageJSON) =>
             new ImgurImage(Object.assign(imageJSON, {
-                datetime: imageJSON.datetime * 1000
-              })
-            )
+              datetime: imageJSON.datetime * 1000
+            }))
           )
         )
       );
   }
 
+  uploadImage(imageData: any) {
+    const endpoint = `${this.serviceBase}/image`;
+
+    // Since the image is base64 encoded, there is no need for multipart/form-data requests
+    return this._httpClient.post(endpoint, imageData);
+  }
 }
