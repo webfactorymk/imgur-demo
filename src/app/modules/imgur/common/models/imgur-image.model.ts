@@ -5,7 +5,11 @@ export class ImgurImage {
   datetime: number;
   type: string;
   views: number;
+  topic: string;
+  accountUrl: string;
   link: string;
+  ups: number;
+  downs: number;
 
   constructor(params: any) {
     if (params) {
@@ -15,7 +19,11 @@ export class ImgurImage {
       this.datetime = params.datetime;
       this.type = params.type;
       this.views = params.views;
+      this.topic = params.topic;
+      this.accountUrl = params.accountUrl;
       this.link = params.link;
+      this.ups = params.ups;
+      this.downs = params.downs;
     }
   }
 }

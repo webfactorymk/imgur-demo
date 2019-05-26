@@ -1,12 +1,20 @@
-<div class="pointer text-center" *ngIf="item" (click)="notifyShowDetails()">
+<div class="pointer justify-content-center img-thumbnail" *ngIf="item" (click)="notifyShowDetails()">
   <img class="img-thumbnail" [src]="item.link" [alt]="item.title"/>
-  <div class="text-center overflow-hidden">
-    <h5>{{item.title}}</h5>
+  <div *ngIf="item.title" class="text-center overflow-hidden">
+    <h6>{{item.title}}</h6>
   </div>
-  <div class="flex flex-row justify-content-between">
-    <span class="text-right flex-1">
+  <div class="flex flex-row pl-2 pr-2 justify-content-around">
+    <div *ngIf="item.ups">
+      <mat-icon>thumb_up</mat-icon>
+      &nbsp;{{item.ups}}
+    </div>
+    <div *ngIf="item.views">
       <mat-icon>visibility</mat-icon>
-      {{item.views}}
-    </span>
+      &nbsp;{{item.views}}
+    </div>
+    <div *ngIf="item.downs">
+      <mat-icon>thumb_down</mat-icon>
+      &nbsp;{{item.downs}}
+    </div>
   </div>
 </div>
