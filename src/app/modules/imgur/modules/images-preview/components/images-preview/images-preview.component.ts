@@ -1,11 +1,22 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {ImgurImage} from '../../../../common/imgur-image.model';
 import {Observable, Subscription} from 'rxjs';
 import {MatDialog} from '@angular/material';
 import {ImageDetailsDialogComponent} from '../image-details-dialog/image-details-dialog.component';
 import {SubscriptionUtils} from '../../../../../shared/util/subscription.utils';
 import {ScrollDispatcher} from '@angular/cdk/overlay';
-import {debounceTime, filter} from 'rxjs/operators';
+import {distinctUntilChanged, map} from 'rxjs/operators';
 import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 
 @Component({
@@ -14,7 +25,7 @@ import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
   styleUrls: ['./images-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ImagesPreviewComponent implements OnInit, OnDestroy {
+export class ImagesPreviewComponent implements OnChanges, OnInit, OnDestroy {
   @ViewChild(CdkVirtualScrollViewport) virtualScrollViewport: CdkVirtualScrollViewport;
 
   @Input() showLoadingSpinner: boolean;
@@ -32,17 +43,20 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
   }
 
   private _subscribeToScrollEvents() {
-    this._scrollDispatcher.scrolled()
+    this._scrollingInfoSubscription = this._scrollDispatcher.scrolled()
       .pipe(
-        debounceTime(150),
-        filter(() => (
+        // debounceTime(150),
+        map(() => (
           // All items have been rendered on screen, we can request a new page
           this.virtualScrollViewport.getDataLength() -
-          this.virtualScrollViewport.getRenderedRange().end) === 0),
-        // distinctUntilChanged()
+          this.virtualScrollViewport.getRenderedRange().end) <= 10),
+        distinctUntilChanged()
       )
-      .subscribe(() => {
-        this.requestNextPage.emit();
+      .subscribe((shouldRequestNextPage) => {
+        console.log(shouldRequestNextPage);
+        if (shouldRequestNextPage) {
+          this.requestNextPage.emit();
+        }
       });
   }
 
@@ -60,5 +74,9 @@ export class ImagesPreviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     SubscriptionUtils.unsubscribe(this._scrollingInfoSubscription);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 }

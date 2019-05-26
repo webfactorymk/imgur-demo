@@ -22,15 +22,22 @@ export class SidenavService implements OnDestroy {
       name: 'Imgur',
       route: '/imgur',
       matIconName: 'photo_library',
-      subItems: [{
-        name: 'My uploads',
-        route: '/imgur/account-images',
-        matIconName: 'view_comfy'
-      }, {
-        name: 'Upload',
-        route: '/imgur/upload',
-        matIconName: 'add_photo_alternate'
-      }]
+      subItems: [
+        {
+          name: 'Top images',
+          route: '/imgur/top-images',
+          matIconName: 'show_chart'
+        },
+        {
+          name: 'My uploads',
+          route: '/imgur/account-images',
+          matIconName: 'view_comfy'
+        },
+        {
+          name: 'Upload',
+          route: '/imgur/upload',
+          matIconName: 'add_photo_alternate'
+        }]
     }];
 
   private _isHandsetDeviceBreakpointSubscription: Subscription;

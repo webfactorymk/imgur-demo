@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {ImgurImage} from './imgur-image.model';
 import {ImageUploadData} from './image-upload-data.interface';
+import {flatten} from 'lodash-es';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,27 @@ export class ImgurHttpService {
     return this._httpClient.get(endpoint)
       .pipe(
         map((response: any) =>
-          response.data.map((imageJSON) =>
-            new ImgurImage(Object.assign(imageJSON, {
-              datetime: imageJSON.datetime * 1000
-            }))
-          )
+          response.data.map((imageJSON) => new ImgurImage(imageJSON))
         )
+      );
+  }
+
+  getTopImages(page: number) {
+    const endpoint = `${this.serviceBase}/gallery/top/top/all/${page}`;
+
+    return this._httpClient.get(endpoint)
+      .pipe(
+        map((response: any) =>
+          flatten(response.data.map((imageJSON) => {
+              if (imageJSON.is_album) {
+                return imageJSON.images.map((albumImage) => {
+                  return new ImgurImage(albumImage);
+                });
+              } else {
+                return new ImgurImage(imageJSON);
+              }
+            })
+          ))
       );
   }
 

@@ -12,6 +12,7 @@ import {FileDropModule} from 'ngx-file-drop';
 import {ConfirmationDialogModule} from '../shared/confirmation-dialog/confirmation-dialog.module';
 import {AccountImagesComponent} from './components/account-images/account-images.component';
 import {ImagesPreviewModule} from './modules/images-preview/images-preview.module';
+import { TopImagesComponent } from './components/top-images/top-images.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {ImagesPreviewModule} from './modules/images-preview/images-preview.modul
   declarations: [
     ImgurComponent,
     ImagesUploadComponent,
-    AccountImagesComponent
+    AccountImagesComponent,
+    TopImagesComponent
   ]
 })
 export class ImgurModule {

@@ -4,12 +4,17 @@ import {CommonModule} from '@angular/common';
 import {ImgurComponent} from './components/imgur/imgur.component';
 import {ImagesUploadComponent} from './components/images-upload/images-upload.component';
 import {AccountImagesComponent} from './components/account-images/account-images.component';
+import {TopImagesComponent} from './components/top-images/top-images.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ImgurComponent,
     children: [
+      {
+        path: 'top-images',
+        component: TopImagesComponent
+      },
       {
         path: 'account-images',
         component: AccountImagesComponent
@@ -18,7 +23,7 @@ const routes: Routes = [
         path: 'upload',
         component: ImagesUploadComponent
       },
-      {path: '', redirectTo: 'account-images', pathMatch: 'full'}
+      {path: '', redirectTo: 'top-images', pathMatch: 'full'}
     ]
   },
 ];
