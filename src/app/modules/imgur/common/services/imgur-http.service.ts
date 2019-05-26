@@ -42,13 +42,10 @@ export class ImgurHttpService {
    */
   private _parseAndFlattenGalleryImagesData(responseData: Array<any>): Array<ImgurImage> {
     return flatten(
-      responseData.map((imageJSON) => {
-        if (imageJSON.is_album) {
-          return this._parseAndFlattenGalleryImagesData(imageJSON.images);
-        } else {
-          return new ImgurImage(imageJSON);
-        }
-      })
+      responseData.map((imageJSON) => !imageJSON.is_album
+        ? new ImgurImage(imageJSON)
+        : this._parseAndFlattenGalleryImagesData(imageJSON.images)
+      )
     );
   }
 

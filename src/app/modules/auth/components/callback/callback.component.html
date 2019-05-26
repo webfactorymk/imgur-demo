@@ -1,12 +1,17 @@
 <ngd-loading-overlay [isLoading]="_isAuthProcessingInProgress"></ngd-loading-overlay>
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="m-4 text-center flex flex-column align-items-center">
-        <h1>Processing account details</h1>
+<div class="h-100 w-100 flex flex-column justify-content-center">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 pb-4 flex flex-column align-items-center">
+
+        <h1 class="semi-bold">Processing account details</h1>
         <p>Please wait...</p>
+        <ngd-loading-spinner [shownInCenter]="true"></ngd-loading-spinner>
+
       </div>
     </div>
   </div>
+
 </div>

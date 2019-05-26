@@ -6,12 +6,14 @@ import {LoginComponent} from './components/login/login.component';
 import {CallbackComponent} from './components/callback/callback.component';
 import {CanActivateLoginGuard} from './services/can-activate-login.guard';
 import {CanActivateLoginCallbackGuard} from './services/can-activate-login-callback.guard';
+import {LoadingSpinnerModule} from '../shared/loading-spinner/loading-spinner.module';
 
 @NgModule({
   imports: [
     CommonModule,
     AuthRoutingModule,
-    LoadingOverlayModule
+    LoadingOverlayModule,
+    LoadingSpinnerModule
   ],
   declarations: [LoginComponent, CallbackComponent],
   providers: [CanActivateLoginGuard, CanActivateLoginCallbackGuard]

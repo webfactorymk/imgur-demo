@@ -1,5 +1,8 @@
-<div class="text-right pr-2 pb-0">
-  <a class="pointer" [routerLink]="['../upload']">Upload new image</a>
+<div class="flex p-2">
+  <h3 class="mb-0 semi-bold">My images</h3>
+  <a class="ml-4 pointer" mat-raised-button color="accent" [routerLink]="['../upload']">
+    Upload new image
+  </a>
 </div>
 
 <ngd-images-preview [showLoadingSpinner]="isPageRequestInProgress"

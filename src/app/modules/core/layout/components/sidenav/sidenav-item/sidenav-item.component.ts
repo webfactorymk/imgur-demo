@@ -20,7 +20,7 @@ export class SidenavItemComponent {
     return this._router.isActive(this._router.parseUrl(this.item.route), false);
   }
 
-  onItemClicked() {
+  commenceRouteChange() {
     this._router.navigate([this.item.route]);
 
     // If it's a mobile sidenav, we might as well close it

@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private static AUTH_TOKEN_STORAGE_KEY_NAME = 'auth-token';
+  private static AUTH_TOKEN_STORAGE_KEY_NAME = 'imgur-auth-token';
 
   private _authTokenSubject: BehaviorSubject<AuthToken>;
   authToken$: Observable<AuthToken>;

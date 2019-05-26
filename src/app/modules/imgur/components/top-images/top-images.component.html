@@ -1,3 +1,7 @@
+<div class="p-2">
+  <h3 class="semi-bold">Imgur's top images</h3>
+</div>
+
 <ngd-images-preview [showLoadingSpinner]="isPageRequestInProgress"
                     [images$]="topImages$"
                     (requestNextPage)="fetchNextPage()">
