@@ -11,28 +11,30 @@ const routes: Routes = [
   {
     path: '',
     component: ImgurComponent,
-    canActivate: [CanActivateImgurContentGuard],
     children: [
       {
         path: 'top-images',
-        component: TopImagesComponent
+        component: TopImagesComponent,
+        canActivate: [CanActivateImgurContentGuard]
       },
       {
         path: 'account-images',
-        component: AccountImagesComponent
+        component: AccountImagesComponent,
+        canActivate: [CanActivateImgurContentGuard]
       },
       {
         path: 'upload',
-        component: ImagesUploadComponent
+        component: ImagesUploadComponent,
+        canActivate: [CanActivateImgurContentGuard]
       },
+      {
+        path: 'auth',
+        loadChildren: './modules/auth/auth.module#AuthModule'
+      },
+      {path: 'login', redirectTo: 'auth/login', pathMatch: 'full'},
       {path: '', redirectTo: 'top-images', pathMatch: 'full'}
     ]
-  },
-  {
-    path: 'auth',
-    loadChildren: './modules/auth/auth.module#AuthModule'
-  },
-  {path: 'login', redirectTo: 'auth/login', pathMatch: 'full'}
+  }
 ];
 
 @NgModule({

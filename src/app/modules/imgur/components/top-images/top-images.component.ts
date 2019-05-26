@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {PagedList} from '../../common/models/paged-list.model';
 import {ImgurImage} from '../../common/models/imgur-image.model';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
 import {MatSnackBar} from '@angular/material';
 import {ImgurHttpService} from '../../common/services/imgur-http.service';
+import {SubscriptionUtils} from '../../../shared/util/subscription.utils';
 
 @Component({
   selector: 'ngd-top-images',
@@ -11,11 +12,13 @@ import {ImgurHttpService} from '../../common/services/imgur-http.service';
   styleUrls: ['./top-images.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TopImagesComponent implements OnInit {
+export class TopImagesComponent implements OnInit, OnDestroy {
   pagedList: PagedList<ImgurImage>;
   isPageRequestInProgress = false;
 
   topImages$: Observable<Array<ImgurImage>>;
+
+  private _dataSubscription: Subscription;
 
   constructor(private _changeDetector: ChangeDetectorRef,
               private _snackBar: MatSnackBar,
@@ -33,7 +36,7 @@ export class TopImagesComponent implements OnInit {
       this.isPageRequestInProgress = true;
       this._changeDetector.detectChanges();
 
-      this._imgurHttpService.getTopImages(page)
+      this._dataSubscription = this._imgurHttpService.getTopImages(page)
         .subscribe((items: Array<ImgurImage>) => {
           this.pagedList.addItems(page, items);
 
@@ -58,5 +61,9 @@ export class TopImagesComponent implements OnInit {
     if (this.pagedList.hasNextPage()) {
       this.getImagesForLoggedInAccount(this.pagedList.nextPage());
     }
+  }
+
+  ngOnDestroy(): void {
+    SubscriptionUtils.unsubscribe(this._dataSubscription);
   }
 }

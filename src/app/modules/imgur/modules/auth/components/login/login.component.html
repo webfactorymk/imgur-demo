@@ -2,14 +2,16 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-12 pb-4 flex flex-column align-items-center">
+      <div class="col-12 pt-4 pb-4 flex flex-column align-items-center">
 
-        <h1 class="semi-bold">Sign in with</h1>
+        <h1 class="semi-bold">Login with</h1>
         <div class="w-50 p-4">
           <img class="img-fluid" src="/assets/img/imgur_logo.png" alt="Imgur logo"/>
         </div>
         <div>
-          <button class="cursor semi-bold btn btn-primary" (click)="commenceAuthorization()">Go to sign in page</button>
+          <button class="cursor semi-bold" mat-raised-button color="accent" (click)="commenceAuthorization()">
+            Go to Imgur's login page
+          </button>
         </div>
 
       </div>

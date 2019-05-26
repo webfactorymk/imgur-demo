@@ -17,15 +17,31 @@ export class SidenavItemComponent {
   }
 
   isRouteActive() {
-    return this._router.isActive(this._router.parseUrl(this.item.route), false);
+    if (this.isString(this.item.routeOrFunction)) {
+      return this._router.isActive(this._router.parseUrl(this.item.routeOrFunction), false);
+    } else {
+      return false;
+    }
   }
 
-  commenceRouteChange() {
-    this._router.navigate([this.item.route]);
+  invokeRouteOrFunction() {
+    if (this.isString(this.item.routeOrFunction)) {
+      this._router.navigate([this.item.routeOrFunction]);
+    } else if (this.isFunction(this.item.routeOrFunction)) {
+      this.item.routeOrFunction();
+    }
 
     // If it's a mobile sidenav, we might as well close it
     if (this._sidenavService.sidenavState.mode === 'over') {
       this._sidenavService.collapseSidenav();
     }
+  }
+
+  isString(valueToTest): boolean {
+    return typeof valueToTest === 'string' || valueToTest instanceof String;
+  }
+
+  isFunction(valueToTest): boolean {
+    return typeof valueToTest === 'function' || valueToTest instanceof Function;
   }
 }

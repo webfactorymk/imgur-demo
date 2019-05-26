@@ -14,6 +14,9 @@ import {AccountImagesComponent} from './components/account-images/account-images
 import {ImagesPreviewModule} from './modules/images-preview/images-preview.module';
 import {TopImagesComponent} from './components/top-images/top-images.component';
 import {CanActivateImgurContentGuard} from './common/services/can-activate-imgur-content.guard';
+import {ImgurAuthService} from './modules/auth/common/services/imgur-auth.service';
+import {SidenavItem} from '../core/layout/components/sidenav/sidenav-item/sidenav-item.interface';
+import {SidenavService} from '../core/layout/common/services/sidenav.service';
 
 @NgModule({
   imports: [

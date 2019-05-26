@@ -26,7 +26,7 @@ export class CallbackComponent implements OnInit {
    * We get the ActivatedRouteSnapshot instead of subscribing since this data we are not interested in the url change at this time
    * If there is no fragment in the URL, then we won't even pass the CanActivateLoginCallbackGuard
    * When we get the fragment, we generally remove it from the URL in the browser so the user does not have time to look at it
-   * Removing it basically means opening the same route, while replacing the old one with the actual authToken data
+   * Removing it basically means opening the same routeOrFunction, while replacing the old one with the actual authToken data
    */
   private _parseAndStoreAuthDetails(): void {
     const routeFragment = this._activatedRoute.snapshot.fragment;

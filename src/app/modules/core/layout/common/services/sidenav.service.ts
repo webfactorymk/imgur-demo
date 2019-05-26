@@ -6,6 +6,8 @@ import {SidenavVisibilityState} from '../models/sidenav-visibility-state.enum';
 import {SubscriptionUtils} from '../../../../shared/util/subscription.utils';
 import {distinctUntilChanged} from 'rxjs/operators';
 import {SidenavItem} from '../../components/sidenav/sidenav-item/sidenav-item.interface';
+import {ImgurAuthService} from '../../../../imgur/modules/auth/common/services/imgur-auth.service';
+import {isEqual} from 'lodash-es';
 
 @Injectable()
 export class SidenavService implements OnDestroy {
@@ -14,36 +16,19 @@ export class SidenavService implements OnDestroy {
 
   private _sidenavItems: BehaviorSubject<Array<SidenavItem>>;
   sidenavItems$: Observable<Array<SidenavItem>>;
-  private initialSidenavItems: Array<SidenavItem> = [
-    {
-      name: 'Screens'
-    },
-    {
-      name: 'Imgur',
-      route: '/imgur',
-      matIconName: 'photo_library',
-      subItems: [
-        {
-          name: 'Top images',
-          route: '/imgur/top-images',
-          matIconName: 'show_chart'
-        },
-        {
-          name: 'My uploads',
-          route: '/imgur/account-images',
-          matIconName: 'view_comfy'
-        },
-        {
-          name: 'Upload',
-          route: '/imgur/upload',
-          matIconName: 'add_photo_alternate'
-        }]
-    }];
 
   private _isHandsetDeviceBreakpointSubscription: Subscription;
 
   get sidenavState(): SidenavState {
     return this._sidenavState.getValue();
+  }
+
+  get sidenavItems(): Array<SidenavItem> {
+    return this._sidenavItems.getValue();
+  }
+
+  set sidenavItems(sidenavItems: Array<SidenavItem>) {
+    this._sidenavItems.next(sidenavItems);
   }
 
   constructor(private _breakpointObserver: BreakpointObserver) {
@@ -59,7 +44,7 @@ export class SidenavService implements OnDestroy {
     });
     this.sidenavState$ = this._sidenavState.asObservable();
 
-    this._sidenavItems = new BehaviorSubject(this.initialSidenavItems);
+    this._sidenavItems = new BehaviorSubject([] );
     this.sidenavItems$ = this._sidenavItems.asObservable();
 
     this._subscribeToWebBreakpointObserver();
@@ -87,6 +72,19 @@ export class SidenavService implements OnDestroy {
     }
 
     this._sidenavState.next(nextSidenavState);
+  }
+
+  addItem(item: SidenavItem) {
+    const currentSidenavItems = this.sidenavItems;
+    const itemIndex = currentSidenavItems
+      .findIndex((existingItem) => existingItem.name === item.name);
+
+    if (itemIndex === -1) {
+      this.sidenavItems = [...currentSidenavItems, item];
+    } else {
+      currentSidenavItems[itemIndex] = item;
+      this.sidenavItems = [...currentSidenavItems];
+    }
   }
 
   toggleSidenav(): void {
