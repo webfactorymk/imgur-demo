@@ -1,4 +1,7 @@
 .img-thumbnail {
   height: auto;
-  max-height: 220px;
+  // Uncomment this to have somewhat of a fixed image design
+  // Without this we could end up with some nice funky design with
+  // Random item height and stuff.
+  //max-height: 220px;
 }
