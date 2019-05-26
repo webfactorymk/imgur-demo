@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {SidenavItem} from './sidenav-item/sidenav-item.interface';
 import {Observable} from 'rxjs';
-import {SidenavService} from '../../services/sidenav.service';
+import {SidenavService} from '../../common/services/sidenav.service';
 
 @Component({
   selector: 'ngd-sidenav',

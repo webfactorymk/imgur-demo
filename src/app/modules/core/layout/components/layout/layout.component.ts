@@ -1,10 +1,10 @@
 import {Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
-import {SidenavService} from '../../services/sidenav.service';
-import {SidenavState} from '../../models/sidenav-state';
+import {SidenavService} from '../../common/services/sidenav.service';
+import {SidenavState} from '../../common/models/sidenav-state';
 import {SubscriptionUtils} from '../../../../shared/util/subscription.utils';
-import {AuthService} from '../../../../auth/services/auth.service';
-import {SidenavVisibilityState} from '../../models/sidenav-visibility-state.enum';
+import {ImgurAuthService} from '../../../../imgur/modules/auth/common/services/imgur-auth.service';
+import {SidenavVisibilityState} from '../../common/models/sidenav-visibility-state.enum';
 
 @Component({
   selector: 'ngd-layout',
@@ -25,7 +25,7 @@ export class LayoutComponent implements OnDestroy {
   private _isHandsetDeviceBreakpointSubscription: Subscription;
 
   constructor(private _layoutService: SidenavService,
-              private _authService: AuthService) {
+              private _authService: ImgurAuthService) {
     this.sidenavState$ = this._layoutService.sidenavState$;
   }
 

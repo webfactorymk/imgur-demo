@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import {AuthService} from './auth.service';
+import {ImgurAuthService} from './imgur-auth.service';
 
 @Injectable()
 export class CanActivateLoginGuard implements CanActivate {
 
   constructor(private _router: Router,
-              private _authService: AuthService) {
+              private _authService: ImgurAuthService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

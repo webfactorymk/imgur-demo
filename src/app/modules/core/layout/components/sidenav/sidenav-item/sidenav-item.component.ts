@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {SidenavItem} from './sidenav-item.interface';
 import {Router} from '@angular/router';
-import {SidenavService} from '../../../services/sidenav.service';
+import {SidenavService} from '../../../common/services/sidenav.service';
 
 @Component({
   selector: 'ngd-sidenav-item',

@@ -5,11 +5,13 @@ import {ImgurComponent} from './components/imgur/imgur.component';
 import {ImagesUploadComponent} from './components/images-upload/images-upload.component';
 import {AccountImagesComponent} from './components/account-images/account-images.component';
 import {TopImagesComponent} from './components/top-images/top-images.component';
+import {CanActivateImgurContentGuard} from './common/services/can-activate-imgur-content.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: ImgurComponent,
+    canActivate: [CanActivateImgurContentGuard],
     children: [
       {
         path: 'top-images',
@@ -26,6 +28,11 @@ const routes: Routes = [
       {path: '', redirectTo: 'top-images', pathMatch: 'full'}
     ]
   },
+  {
+    path: 'auth',
+    loadChildren: './modules/auth/auth.module#AuthModule'
+  },
+  {path: 'login', redirectTo: 'auth/login', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class ImgurAuthService {
   private static AUTH_TOKEN_STORAGE_KEY_NAME = 'imgur-auth-token';
 
   private _authTokenSubject: BehaviorSubject<AuthToken>;
@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   private _retrieveAuthDetails(): AuthToken {
-    const storedToken = localStorage.getItem(AuthService.AUTH_TOKEN_STORAGE_KEY_NAME);
+    const storedToken = localStorage.getItem(ImgurAuthService.AUTH_TOKEN_STORAGE_KEY_NAME);
     console.log('authToken in localStorage', storedToken);
 
     if (!storedToken) {
@@ -53,7 +53,7 @@ export class AuthService {
       return;
     }
 
-    localStorage.setItem(AuthService.AUTH_TOKEN_STORAGE_KEY_NAME, JSON.stringify(authToken));
+    localStorage.setItem(ImgurAuthService.AUTH_TOKEN_STORAGE_KEY_NAME, JSON.stringify(authToken));
   }
 
   logout(): void {
@@ -62,6 +62,6 @@ export class AuthService {
   }
 
   private _clearAuthDetails(): void {
-    localStorage.removeItem(AuthService.AUTH_TOKEN_STORAGE_KEY_NAME);
+    localStorage.removeItem(ImgurAuthService.AUTH_TOKEN_STORAGE_KEY_NAME);
   }
 }

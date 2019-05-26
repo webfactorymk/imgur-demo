@@ -3,9 +3,9 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {SidenavState} from '../models/sidenav-state';
 import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import {SidenavVisibilityState} from '../models/sidenav-visibility-state.enum';
-import {SubscriptionUtils} from '../../../shared/util/subscription.utils';
+import {SubscriptionUtils} from '../../../../shared/util/subscription.utils';
 import {distinctUntilChanged} from 'rxjs/operators';
-import {SidenavItem} from '../components/sidenav/sidenav-item/sidenav-item.interface';
+import {SidenavItem} from '../../components/sidenav/sidenav-item/sidenav-item.interface';
 
 @Injectable()
 export class SidenavService implements OnDestroy {

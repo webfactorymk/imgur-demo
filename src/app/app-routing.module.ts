@@ -3,11 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {LayoutComponent} from './modules/core/layout/components/layout/layout.component';
 
 const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: './modules/auth/auth.module#AuthModule'
-  },
-  {path: 'login', redirectTo: 'auth/login', pathMatch: 'full'},
+  {path: 'login', redirectTo: 'imgur/login', pathMatch: 'full'},
   {
     path: '',
     component: LayoutComponent,

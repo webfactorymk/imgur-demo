@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {SidenavService} from '../../services/sidenav.service';
+import {SidenavService} from '../../common/services/sidenav.service';
 
 @Component({
   selector: 'ngd-toolbar',

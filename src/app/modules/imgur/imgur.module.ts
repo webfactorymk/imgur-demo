@@ -12,7 +12,8 @@ import {FileDropModule} from 'ngx-file-drop';
 import {ConfirmationDialogModule} from '../shared/confirmation-dialog/confirmation-dialog.module';
 import {AccountImagesComponent} from './components/account-images/account-images.component';
 import {ImagesPreviewModule} from './modules/images-preview/images-preview.module';
-import { TopImagesComponent } from './components/top-images/top-images.component';
+import {TopImagesComponent} from './components/top-images/top-images.component';
+import {CanActivateImgurContentGuard} from './common/services/can-activate-imgur-content.guard';
 
 @NgModule({
   imports: [
@@ -33,6 +34,9 @@ import { TopImagesComponent } from './components/top-images/top-images.component
     ImagesUploadComponent,
     AccountImagesComponent,
     TopImagesComponent
+  ],
+  providers: [
+    CanActivateImgurContentGuard
   ]
 })
 export class ImgurModule {

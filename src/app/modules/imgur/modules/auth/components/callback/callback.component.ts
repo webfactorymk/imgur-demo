@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthToken} from '../../models/auth-token.model';
-import {AuthService} from '../../services/auth.service';
+import {AuthToken} from '../../common/models/auth-token.model';
+import {ImgurAuthService} from '../../common/services/imgur-auth.service';
 import * as moment from 'moment';
 
 @Component({
@@ -15,7 +15,7 @@ export class CallbackComponent implements OnInit {
 
   constructor(private _router: Router,
               private _activatedRoute: ActivatedRoute,
-              private _authService: AuthService) {
+              private _authService: ImgurAuthService) {
   }
 
   ngOnInit(): void {

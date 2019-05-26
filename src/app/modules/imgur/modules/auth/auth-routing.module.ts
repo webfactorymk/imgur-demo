@@ -1,8 +1,8 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CanActivateLoginGuard} from './services/can-activate-login.guard';
-import {CanActivateLoginCallbackGuard} from './services/can-activate-login-callback.guard';
+import {CanActivateLoginGuard} from './common/services/can-activate-login.guard';
+import {CanActivateLoginCallbackGuard} from './common/services/can-activate-login-callback.guard';
 import {LoginComponent} from './components/login/login.component';
 import {CallbackComponent} from './components/callback/callback.component';
 

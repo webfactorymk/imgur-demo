@@ -2,7 +2,7 @@ import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LayoutModule} from './layout/layout.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInterceptor} from './authentication/auth.interceptor';
+import {ImgurAuthInterceptor} from './authentication/imgur-auth.interceptor';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig, MatSnackBarModule} from '@angular/material';
 
 @NgModule({
@@ -15,7 +15,7 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig, MatSnackBarModule} fro
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: ImgurAuthInterceptor,
       multi: true
     },
     {

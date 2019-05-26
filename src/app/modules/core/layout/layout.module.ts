@@ -4,7 +4,7 @@ import {RouterModule} from '@angular/router';
 import {LayoutComponent} from './components/layout/layout.component';
 import {MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {ToolbarComponent} from './components/toolbar/toolbar.component';
-import {SidenavService} from './services/sidenav.service';
+import {SidenavService} from './common/services/sidenav.service';
 import {SidenavComponent} from './components/sidenav/sidenav.component';
 import { SidenavItemComponent } from './components/sidenav/sidenav-item/sidenav-item.component';
 
