@@ -6,24 +6,17 @@
   .layout-sidenav {
     width: $sidenav-width;
     max-width: $sidenav-width;
-    background-color: $sidenav-background_color;
+    background-color: $sidenav-background;
+    color: rgba(255, 255, 255, 0.8);
   }
 
-  //.layout-content-wrapper {
-  //  overflow: hidden;
-  //}
-
   .layout-wrapper {
-    //height: 100%;
     max-width: 100%;
 
     .layout-main-container {
       padding-top: $toolbar-height;
       position: relative;
       flex: 1;
-      //position: relative;
-      //flex: 1;
-      //overflow: auto;
     }
   }
 }

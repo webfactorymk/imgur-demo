@@ -1,8 +1,9 @@
-<div><a [routerLink]="['../upload']">Upload new image</a></div>
-
-<div style="position: relative; height: 100%">
+<div class="text-right pr-2 pb-0">
+  <a class="pointer" [routerLink]="['../upload']">Upload new image</a>
+</div>
+<div class="flex-1" style="position: relative; height: 100%">
   <cdk-virtual-scroll-viewport class="image-scroll-viewport flex flex-column flex--justify-between"
-                               itemSize="50" (scrolledIndexChange)="onScrolledIndexChange($event)">
+                               itemSize="10" (scrolledIndexChange)="onScrolledIndexChange($event)">
     <div class="container-fluid">
       <div class="row">
         <div class="image-scroll-item col-xs-12 col-sm-6 col-md-4 col-lg-3"

@@ -32,11 +32,15 @@
 }
 
 .hidden-input-file {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    display: none;
-    z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  display: none;
+  z-index: -1;
+}
+
+.full-width {
+  width: 100%;
 }

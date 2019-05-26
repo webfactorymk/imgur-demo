@@ -6,12 +6,14 @@ import {MatButtonModule, MatIconModule, MatSidenavModule, MatToolbarModule} from
 import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {SidenavService} from './services/sidenav.service';
 import {SidenavComponent} from './components/sidenav/sidenav.component';
+import { SidenavItemComponent } from './components/sidenav/sidenav-item/sidenav-item.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     ToolbarComponent,
-    SidenavComponent
+    SidenavComponent,
+    SidenavItemComponent
   ],
   imports: [
     CommonModule,

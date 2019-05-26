@@ -1,0 +1,18 @@
+<ng-container *ngIf="!item.route">
+  <div class="sidenav-item-heading">{{item.name}}</div>
+</ng-container>
+
+<ng-container *ngIf="item.route">
+  <a class="sidenav-item pointer flex flex-row align-items-center semi-bold"
+     [ngClass]="['sidenav-item-level-' + itemLevel]" [class.active]="isRouteActive()"
+     (click)="onItemClicked()">
+    <mat-icon class="sidenav-item-icon" *ngIf="item.matIconName">{{item.matIconName}}</mat-icon>
+    <span class="sidenav-item-name">{{item.name}}</span>
+  </a>
+</ng-container>
+
+<ng-container *ngIf="item.subItems">
+  <ngd-sidenav-item *ngFor="let subItem of item.subItems"
+                    [item]="subItem" [itemLevel]="itemLevel + 1">
+  </ngd-sidenav-item>
+</ng-container>

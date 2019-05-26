@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-12">
       <h2>{{item.title}}</h2>
-      <img class="img-fluid" [src]="item.link"/>
-      <p>{{item.datetime | date: 'medium'}}</p>
+      <img class="img-fluid full-width" [src]="item.link" alt="Uploaded image"/>
+      <p>{{item.datetime | date: 'mediumDate'}}</p>
       <p>{{item.description}}</p>
     </div>
   </div>

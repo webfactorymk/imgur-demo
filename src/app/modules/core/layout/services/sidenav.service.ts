@@ -5,20 +5,38 @@ import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/lay
 import {SidenavVisibilityState} from '../models/sidenav-visibility-state.enum';
 import {SubscriptionUtils} from '../../../shared/util/subscription.utils';
 import {distinctUntilChanged} from 'rxjs/operators';
+import {SidenavItem} from '../components/sidenav/sidenav-item/sidenav-item.interface';
 
 @Injectable()
 export class SidenavService implements OnDestroy {
   private _sidenavState: BehaviorSubject<SidenavState>;
   sidenavState$: Observable<SidenavState>;
 
+  private _sidenavItems: BehaviorSubject<Array<SidenavItem>>;
+  sidenavItems$: Observable<Array<SidenavItem>>;
+  private initialSidenavItems: Array<SidenavItem> = [
+    {
+      name: 'Screens'
+    },
+    {
+      name: 'Imgur',
+      route: '/imgur',
+      matIconName: 'photo_library',
+      subItems: [{
+        name: 'My uploads',
+        route: '/imgur/images-preview',
+        matIconName: 'view_comfy'
+      }, {
+        name: 'Upload',
+        route: '/imgur/upload',
+        matIconName: 'add_photo_alternate'
+      }]
+    }];
+
   private _isHandsetDeviceBreakpointSubscription: Subscription;
 
-  private get sidenavState(): SidenavState {
+  get sidenavState(): SidenavState {
     return this._sidenavState.getValue();
-  }
-
-  private set sidenavState(sidenavState: SidenavState) {
-    this._sidenavState.next(sidenavState);
   }
 
   constructor(private _breakpointObserver: BreakpointObserver) {
@@ -33,6 +51,9 @@ export class SidenavService implements OnDestroy {
       value: isHandsetDeviceSize ? SidenavVisibilityState.Collapsed : SidenavVisibilityState.Expanded
     });
     this.sidenavState$ = this._sidenavState.asObservable();
+
+    this._sidenavItems = new BehaviorSubject(this.initialSidenavItems);
+    this.sidenavItems$ = this._sidenavItems.asObservable();
 
     this._subscribeToWebBreakpointObserver();
   }
@@ -58,22 +79,26 @@ export class SidenavService implements OnDestroy {
       nextSidenavState.value = SidenavVisibilityState.Collapsed;
     }
 
-    this.sidenavState = nextSidenavState;
+    this._sidenavState.next(nextSidenavState);
   }
 
   toggleSidenav(): void {
     const currentSidenavState = this.sidenavState;
-    this.sidenavState = Object.assign(currentSidenavState, {
-      value: currentSidenavState.value === SidenavVisibilityState.Expanded
-        ? SidenavVisibilityState.Collapsed
-        : SidenavVisibilityState.Expanded
-    });
+    this._sidenavState.next(
+      Object.assign(currentSidenavState, {
+        value: currentSidenavState.value === SidenavVisibilityState.Expanded
+          ? SidenavVisibilityState.Collapsed
+          : SidenavVisibilityState.Expanded
+      })
+    );
   }
 
   collapseSidenav(): void {
-    this.sidenavState = Object.assign(this.sidenavState, {
-      value: SidenavVisibilityState.Collapsed
-    });
+    this._sidenavState.next(
+      Object.assign(this.sidenavState, {
+        value: SidenavVisibilityState.Collapsed
+      })
+    );
   }
 
   ngOnDestroy(): void {

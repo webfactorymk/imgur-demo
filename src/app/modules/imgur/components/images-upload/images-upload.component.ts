@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
 import {ConfirmationDialogComponent} from '../../../shared/confirmation-dialog/confirmation-dialog.component';
 import {Router} from '@angular/router';
+import {ConfirmationDialogData} from '../../../shared/confirmation-dialog/confirmation-dialog-data.interface';
 
 @Component({
   selector: 'ngd-images-upload',
@@ -23,13 +24,10 @@ export class ImagesUploadComponent implements OnInit {
 
   canvasWhiteboardOptions: CanvasWhiteboardOptions = {
     aspectRatio: 0.5,
-
     drawButtonEnabled: false,
     drawingEnabled: true,
-    drawButtonClass: 'drawButtonClass',
     drawButtonText: 'Draw',
     clearButtonEnabled: true,
-    clearButtonClass: 'clearButtonClass',
     clearButtonText: 'Clear',
     undoButtonText: 'Undo',
     undoButtonEnabled: true,
@@ -43,8 +41,8 @@ export class ImagesUploadComponent implements OnInit {
   };
 
   constructor(private _router: Router,
-              private _changeDetector: ChangeDetectorRef,
               private _formBuilder: FormBuilder,
+              private _changeDetector: ChangeDetectorRef,
               private _snackBar: MatSnackBar,
               private _matDialog: MatDialog,
               private _imgurHttpService: ImgurHttpService) {
@@ -100,7 +98,7 @@ export class ImagesUploadComponent implements OnInit {
       const formValue = this.imageUploadForm.value;
 
       this._imgurHttpService.uploadImage({
-        image: formValue.image.split(',')[1],
+        image: formValue.image,
         title: formValue.title,
         description: formValue.description,
         type: 'base64'
@@ -112,8 +110,7 @@ export class ImagesUploadComponent implements OnInit {
 
           this._snackBar.open('Image uploaded successfully', 'Dismiss');
 
-          this.openRedirectConfirmationDialog();
-
+          this._openRedirectConfirmationDialog();
         }, (err) => {
           this.isImageUploadInProgress = false;
           this._snackBar.open(`Image upload failed. The error was: ${err.message}`, 'Dismiss');
@@ -134,26 +131,36 @@ export class ImagesUploadComponent implements OnInit {
   }
 
   private _saveLatestCanvasEditedImage() {
+    // We could listen to the canvas changes for draw, edit, undo, clear to get the data realtime
+    // But for now there is no need since we only need the finished image before we upload
     const savedImageBase64 = this.canvasWhiteboard.generateCanvasDataUrl();
     this.imageUploadForm.get('image').setValue(savedImageBase64);
 
     this._changeDetector.detectChanges();
   }
 
-  openRedirectConfirmationDialog() {
-    this._matDialog.open(ConfirmationDialogComponent, {
-      data: {
-        title: 'Action required',
-        description: 'You will be redirected to your Imgur overview, do you wish to proceed or continue uploading more images?',
-        confirmText: 'Proceed to gallery',
-        cancelText: 'Continue uploading'
-      }
+  private _openRedirectConfirmationDialog() {
+    const dialogData: ConfirmationDialogData = {
+      title: 'Well done!',
+      description: '<p>The image has been uploaded successfully!</p>' +
+        '<p>Do you want to continue uploading images?</p>',
+      confirmText: 'Yes!',
+      cancelText: 'No, go to overview'
+    };
+
+    const dialogSubscription = this._matDialog.open(ConfirmationDialogComponent, {
+      minWidth: '40vw',
+      data: dialogData
     })
       .afterClosed()
-      .subscribe((shouldProceedToGallery) => {
-        if (shouldProceedToGallery) {
+      .subscribe((continueUploading: boolean) => {
+        dialogSubscription.unsubscribe();
+
+        if (!continueUploading) {
           this._router.navigate(['/imgur']);
         }
+      }, () => {
+        dialogSubscription.unsubscribe();
       });
   }
 }

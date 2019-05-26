@@ -1,4 +1,4 @@
-export class ConfirmationDialogData {
+export interface ConfirmationDialogData {
   title: string;
   description: string;
   confirmText: string;

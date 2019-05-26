@@ -3,7 +3,7 @@ import {ImgurHttpService} from '../../common/imgur-http.service';
 import {ImgurImage} from '../../common/imgur-image.model';
 import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material';
-import {GalleryItemDetailsDialogComponent} from './gallery-item-details-dialog/gallery-item-details-dialog.component';
+import {ImageDetailsDialogComponent} from '../image-details-dialog/image-details-dialog.component';
 
 @Component({
   selector: 'ngd-imgur-images-preview',
@@ -19,10 +19,7 @@ export class ImagesPreviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.accountImages$ = this._imgurHttpService.getImagesForLoggedInAccount();
-    // .subscribe((accountImages: Array<ImgurImage>) => {
-    //   console.log(result);
-    // });
+    this.accountImages$ = this._imgurHttpService.getImagesForLoggedInAccount(0);
   }
 
   onScrolledIndexChange(event: any) {
@@ -33,8 +30,9 @@ export class ImagesPreviewComponent implements OnInit {
   }
 
   showItemDetails(item: ImgurImage) {
-    this._matDialog.open(GalleryItemDetailsDialogComponent, {
+    this._matDialog.open(ImageDetailsDialogComponent, {
       maxHeight: '95vh',
+      width: '90vw',
       data: item
     });
   }

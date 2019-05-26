@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {SidenavService} from '../../services/sidenav.service';
 import {SidenavState} from '../../models/sidenav-state';
@@ -10,8 +10,7 @@ import {SidenavVisibilityState} from '../../models/sidenav-visibility-state.enum
   selector: 'ngd-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnDestroy {
   // Get all the states so that we can use them in the HTML

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {SidenavItem} from './sidenav-item/sidenav-item.interface';
+import {Observable} from 'rxjs';
+import {SidenavService} from '../../services/sidenav.service';
 
 @Component({
   selector: 'ngd-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent {
+  sidenavItems$: Observable<Array<SidenavItem>>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private _sidenavService: SidenavService) {
+    this.sidenavItems$ = this._sidenavService.sidenavItems$;
   }
-
 }

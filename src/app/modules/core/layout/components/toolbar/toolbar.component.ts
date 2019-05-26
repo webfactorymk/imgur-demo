@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {SidenavService} from '../../services/sidenav.service';
 
 @Component({
@@ -6,16 +6,12 @@ import {SidenavService} from '../../services/sidenav.service';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
   constructor(private _layoutService: SidenavService) {
-  }
-
-  ngOnInit() {
   }
 
   toggleSidenav() {
     this._layoutService.toggleSidenav();
   }
-
 }

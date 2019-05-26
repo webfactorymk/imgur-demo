@@ -1,0 +1,39 @@
+@import "var";
+
+.sidenav-item-heading {
+  font-weight: 500;
+  white-space: nowrap;
+  margin-left: $sidenav-item-padding-left + 5px;
+  margin-top: $sidenav-item-heading-spacing;
+  margin-bottom: $sidenav-item-heading-spacing / 2;
+  font-size: 14px;
+}
+
+.sidenav-item {
+  height: $sidenav-item-height;
+  padding: 0 $sidenav-item-padding-right 0 $sidenav-item-padding-left;
+  outline: none;
+  font-size: 14px;
+  border-left: 3px solid transparent;
+
+  &.sidenav-item-level-2 {
+    padding-left: $sidenav-item-padding-left * 2;
+  }
+
+  &.active {
+    background: $sidenav-background-active;
+    color: #fff;
+    border-left-color: #fff;
+  }
+
+  .sidenav-item-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 22px;
+    line-height: 22px;
+  }
+
+  .sidenav-item-name {
+    padding-left: $sidenav-item-padding-left;
+  }
+}

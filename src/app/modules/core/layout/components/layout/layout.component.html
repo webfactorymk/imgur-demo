@@ -4,13 +4,11 @@
                [mode]="sidenavState.mode"
                [opened]="sidenavState.value === sidenavVisibilityStates.Expanded"
                (closedStart)="sidenavClosedStart()">
-    <div>
-      <span class="flex"></span>
-    </div>
+
     <ngd-sidenav></ngd-sidenav>
   </mat-sidenav>
-  <mat-sidenav-content class="layout-content-wrapper">
 
+  <mat-sidenav-content class="layout-content-wrapper">
     <div class="layout-wrapper">
       <ngd-toolbar></ngd-toolbar>
 
@@ -18,6 +16,5 @@
         <router-outlet></router-outlet>
       </div>
     </div>
-
   </mat-sidenav-content>
 </mat-sidenav-container>

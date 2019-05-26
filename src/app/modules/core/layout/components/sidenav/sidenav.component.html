@@ -1,3 +1,4 @@
-<p>
-  sidenav works!
-</p>
+<span class="flex"></span>
+<ng-container *ngFor="let sidenavItem of (sidenavItems$ | async)">
+  <ngd-sidenav-item [item]="sidenavItem"></ngd-sidenav-item>
+</ng-container>

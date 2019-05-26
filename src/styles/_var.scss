@@ -1,4 +1,12 @@
 $sidenav-width: 270px;
-$sidenav-background_color: #2b303b;
+
+$sidenav-background: #2b303b;
+$sidenav-background-hover: darken($sidenav-background, 4);
+$sidenav-background-active: $sidenav-background-hover;
+
+$sidenav-item-height: 48px;
+$sidenav-item-padding-left: 24px;
+$sidenav-item-padding-right: 24px;
+$sidenav-item-heading-spacing: 24px;
 
 $toolbar-height: 64px;
