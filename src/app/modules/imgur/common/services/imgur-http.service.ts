@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {ImgurImage} from './imgur-image.model';
-import {ImageUploadData} from './image-upload-data.interface';
+import {ImgurImage} from '../models/imgur-image.model';
+import {ImageUploadData} from '../models/image-upload-data.interface';
 import {flatten} from 'lodash-es';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,37 +18,41 @@ export class ImgurHttpService {
     this.serviceBase = `${environment.imgurApiBase}/${environment.imgurApiVersion}`;
   }
 
-  getImagesForLoggedInAccount(page: number) {
+  getImagesForLoggedInAccount(page: number): Observable<Array<ImgurImage>> {
     const endpoint = `${this.serviceBase}/account/me/images/${page}`;
 
     return this._httpClient.get(endpoint)
       .pipe(
-        map((response: any) =>
-          response.data.map((imageJSON) => new ImgurImage(imageJSON))
-        )
+        map((response: any) => this._parseAndFlattenGalleryImagesData(response.data))
       );
   }
 
-  getTopImages(page: number) {
+  getTopImages(page: number): Observable<Array<ImgurImage>> {
     const endpoint = `${this.serviceBase}/gallery/top/top/all/${page}`;
 
     return this._httpClient.get(endpoint)
       .pipe(
-        map((response: any) =>
-          flatten(response.data.map((imageJSON) => {
-              if (imageJSON.is_album) {
-                return imageJSON.images.map((albumImage) => {
-                  return new ImgurImage(albumImage);
-                });
-              } else {
-                return new ImgurImage(imageJSON);
-              }
-            })
-          ))
+        map((response: any) => this._parseAndFlattenGalleryImagesData(response.data))
       );
   }
 
-  uploadImage(imageData: ImageUploadData) {
+  /**
+   * Recursively go into each response item, if it's an album, it should contain an array of images
+   * #https://api.imgur.com/models/gallery_album
+   */
+  private _parseAndFlattenGalleryImagesData(responseData: Array<any>): Array<ImgurImage> {
+    return flatten(
+      responseData.map((imageJSON) => {
+        if (imageJSON.is_album) {
+          return this._parseAndFlattenGalleryImagesData(imageJSON.images);
+        } else {
+          return new ImgurImage(imageJSON);
+        }
+      })
+    );
+  }
+
+  uploadImage(imageData: ImageUploadData): Observable<any> {
     const endpoint = `${this.serviceBase}/image`;
 
     // Imgur does not need the initial data:image/jpeg;base64, so we remove it in the service here.

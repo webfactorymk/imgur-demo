@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {ImgurHttpService} from '../../common/imgur-http.service';
-import {ImgurImage} from '../../common/imgur-image.model';
+import {ImgurHttpService} from '../../common/services/imgur-http.service';
+import {ImgurImage} from '../../common/models/imgur-image.model';
 import {Observable, of} from 'rxjs';
-import {PagedList} from '../../common/paged-list.model';
+import {PagedList} from '../../common/models/paged-list.model';
 import {MatSnackBar} from '@angular/material';
 
 @Component({

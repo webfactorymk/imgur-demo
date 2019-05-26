@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FileUtils} from '../../../shared/util/file.utils';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {CanvasWhiteboardComponent, CanvasWhiteboardOptions} from 'ng2-canvas-whiteboard';
-import {ImgurHttpService} from '../../common/imgur-http.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
+import {ImgurHttpService} from '../../common/services/imgur-http.service';
+import {FileUtils} from '../../../shared/util/file.utils';
 import {ConfirmationDialogComponent} from '../../../shared/confirmation-dialog/confirmation-dialog.component';
-import {Router} from '@angular/router';
 import {ConfirmationDialogData} from '../../../shared/confirmation-dialog/confirmation-dialog-data.interface';
 
 @Component({
@@ -118,7 +118,6 @@ export class ImagesUploadComponent implements OnInit {
         });
     }
   }
-
 
   fileDropped(event: UploadEvent) {
     if (event && event.files && event.files.length) {

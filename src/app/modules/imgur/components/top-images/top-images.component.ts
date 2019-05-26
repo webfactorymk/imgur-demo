@@ -1,9 +1,9 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {PagedList} from '../../common/paged-list.model';
-import {ImgurImage} from '../../common/imgur-image.model';
+import {PagedList} from '../../common/models/paged-list.model';
+import {ImgurImage} from '../../common/models/imgur-image.model';
 import {Observable, of} from 'rxjs';
 import {MatSnackBar} from '@angular/material';
-import {ImgurHttpService} from '../../common/imgur-http.service';
+import {ImgurHttpService} from '../../common/services/imgur-http.service';
 
 @Component({
   selector: 'ngd-top-images',

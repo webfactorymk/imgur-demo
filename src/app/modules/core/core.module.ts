@@ -6,12 +6,12 @@ import {AuthInterceptor} from './authentication/auth.interceptor';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig, MatSnackBarModule} from '@angular/material';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     LayoutModule,
     MatSnackBarModule
   ],
+  declarations: [],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

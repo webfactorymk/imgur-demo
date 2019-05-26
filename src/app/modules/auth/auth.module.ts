@@ -8,16 +8,13 @@ import {CanActivateLoginGuard} from './services/can-activate-login.guard';
 import {CanActivateLoginCallbackGuard} from './services/can-activate-login-callback.guard';
 
 @NgModule({
-  declarations: [LoginComponent, CallbackComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
     LoadingOverlayModule
   ],
-  providers: [
-    CanActivateLoginGuard,
-    CanActivateLoginCallbackGuard
-  ]
+  declarations: [LoginComponent, CallbackComponent],
+  providers: [CanActivateLoginGuard, CanActivateLoginCallbackGuard]
 })
 export class AuthModule {
 }

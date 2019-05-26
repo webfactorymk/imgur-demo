@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {ImgurImage} from '../../../../common/imgur-image.model';
+import {ImgurImage} from '../../../../common/models/imgur-image.model';
 
 @Component({
   selector: 'ngd-gallery-preview-item',

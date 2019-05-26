@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {ImgurImage} from '../../../../common/imgur-image.model';
+import {ImgurImage} from '../../../../common/models/imgur-image.model';
 
 @Component({
   selector: 'ngd-image-details-dialog',
