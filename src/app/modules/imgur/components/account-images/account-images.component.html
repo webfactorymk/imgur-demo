@@ -1,0 +1,8 @@
+<div class="text-right pr-2 pb-0">
+  <a class="pointer" [routerLink]="['../upload']">Upload new image</a>
+</div>
+
+<ngd-images-preview [showLoadingSpinner]="isPageRequestInProgress"
+                    [images$]="accountImages$"
+                    (requestNextPage)="fetchNextPage()">
+</ngd-images-preview>

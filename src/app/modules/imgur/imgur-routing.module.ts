@@ -1,9 +1,9 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ImagesPreviewComponent} from './components/images-preview/images-preview.component';
 import {ImgurComponent} from './components/imgur/imgur.component';
 import {ImagesUploadComponent} from './components/images-upload/images-upload.component';
+import {AccountImagesComponent} from './components/account-images/account-images.component';
 
 const routes: Routes = [
   {
@@ -11,14 +11,14 @@ const routes: Routes = [
     component: ImgurComponent,
     children: [
       {
-        path: 'images-preview',
-        component: ImagesPreviewComponent
+        path: 'account-images',
+        component: AccountImagesComponent
       },
       {
         path: 'upload',
         component: ImagesUploadComponent
       },
-      {path: '', redirectTo: 'images-preview', pathMatch: 'full'}
+      {path: '', redirectTo: 'account-images', pathMatch: 'full'}
     ]
   },
 ];

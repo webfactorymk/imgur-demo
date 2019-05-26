@@ -24,7 +24,7 @@ export class SidenavService implements OnDestroy {
       matIconName: 'photo_library',
       subItems: [{
         name: 'My uploads',
-        route: '/imgur/images-preview',
+        route: '/imgur/account-images',
         matIconName: 'view_comfy'
       }, {
         name: 'Upload',

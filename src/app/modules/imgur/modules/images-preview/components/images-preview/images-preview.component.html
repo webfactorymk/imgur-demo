@@ -1,0 +1,15 @@
+<div class="flex-1" style="position: relative; height: 100%">
+  <cdk-virtual-scroll-viewport class="image-scroll-viewport"
+                               itemSize="50">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="image-scroll-item col-xs-12 col-sm-6 col-md-4 col-lg-3"
+             *cdkVirtualFor="let item of (images$ | async); trackBy: trackByImageIdFn">
+          <ngd-gallery-preview-item [item]="item" (details)="showItemDetails($event)"></ngd-gallery-preview-item>
+        </div>
+      </div>
+    </div>
+
+    <ngd-loading-spinner *ngIf="showLoadingSpinner" [shownInCenter]="true"></ngd-loading-spinner>
+  </cdk-virtual-scroll-viewport>
+</div>
