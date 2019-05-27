@@ -1,7 +1,7 @@
 // @ts-ignore
 export const environment = {
   production: true,
-  imgurApiBase: 'https://api.imgur.com',
-  imgurApiVersion: '3',
+  imgurApiBase: process.env.IMGUR_API_BASE,
+  imgurApiVersion: process.env.IMGUR_API_VERSION,
   imgurClientId: process.env.IMGUR_CLIENT_ID
 };
