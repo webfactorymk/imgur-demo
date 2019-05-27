@@ -1,8 +1,10 @@
 <div class="pointer justify-content-center img-thumbnail" *ngIf="item" (click)="notifyShowDetails()">
 
   <ng-container *ngIf="item.isVideo()">
-    <video class="img-thumbnail" autoplay muted>
+    <video class="img-thumbnail" autoplay muted loop preload="metadata">
       <source [src]="item.link" [type]="item.type"/>
+
+      Your browser does not support videos.
     </video>
   </ng-container>
   <ng-container *ngIf="item.isImage()">

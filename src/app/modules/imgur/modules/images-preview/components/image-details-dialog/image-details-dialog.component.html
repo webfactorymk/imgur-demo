@@ -1,9 +1,11 @@
 <h2 class="text-center" mat-dialog-title>{{item.title}}</h2>
 <mat-dialog-content>
+
   <div class="text-center">
     <ng-container *ngIf="item.isVideo()">
-      <video class="img-thumbnail" autoplay muted controls>
+      <video class="img-thumbnail" autoplay muted loop preload="metadata">
         <source [src]="item.link" [type]="item.type"/>
+        Your browser does not support videos.
       </video>
     </ng-container>
     <ng-container *ngIf="item.isImage()">
