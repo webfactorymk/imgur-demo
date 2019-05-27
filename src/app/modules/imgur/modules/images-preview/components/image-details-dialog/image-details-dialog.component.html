@@ -3,7 +3,7 @@
 
   <div class="text-center">
     <ng-container *ngIf="item.isVideo()">
-      <video class="img-thumbnail" autoplay muted loop preload="metadata">
+      <video class="img-thumbnail" autoplay controls [muted]="'muted'" loop preload="metadata">
         <source [src]="item.link" [type]="item.type"/>
         Your browser does not support videos.
       </video>
