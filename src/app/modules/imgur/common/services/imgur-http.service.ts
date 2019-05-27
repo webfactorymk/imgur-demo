@@ -28,7 +28,7 @@ export class ImgurHttpService {
   }
 
   getTopImages(page: number): Observable<Array<ImgurImage>> {
-    const endpoint = `${this.serviceBase}/gallery/top/top/all/${page}`;
+    const endpoint = `${this.serviceBase}/gallery/hot/top/all/${page}`;
 
     return this._httpClient.get(endpoint)
       .pipe(

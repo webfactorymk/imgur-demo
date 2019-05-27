@@ -26,4 +26,13 @@ export class ImgurImage {
       this.downs = params.downs;
     }
   }
+
+  isVideo(): boolean {
+    return !!this.type.match(/video\//);
+  }
+
+  isImage(): boolean {
+    return !!this.type.match(/image\//);
+  }
+
 }

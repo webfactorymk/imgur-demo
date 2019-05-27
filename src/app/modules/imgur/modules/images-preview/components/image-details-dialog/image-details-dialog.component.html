@@ -1,6 +1,16 @@
 <h2 class="text-center" mat-dialog-title>{{item.title}}</h2>
 <mat-dialog-content>
-  <img class="img-fluid full-width" [src]="item.link" alt="Uploaded image"/>
+  <div class="text-center">
+    <ng-container *ngIf="item.isVideo()">
+      <video class="img-thumbnail" autoplay muted controls>
+        <source [src]="item.link" [type]="item.type"/>
+      </video>
+    </ng-container>
+    <ng-container *ngIf="item.isImage()">
+      <img class="img-thumbnail" [src]="item.link" [alt]="item.title"/>
+    </ng-container>
+  </div>
+
   <hr/>
   <p>{{item.description}}</p>
 </mat-dialog-content>
