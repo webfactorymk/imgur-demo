@@ -1,5 +1,6 @@
 .canvas-wrapper {
   width: 100%;
+  margin-bottom: 20px;
   height: 70vh;
 
   .canvas-whiteboard {
@@ -13,9 +14,9 @@
     /deep/ .canvas_whiteboard, /deep/ .incomplete_shapes_canvas_whiteboard {
       object-fit: contain;
 
-      width: calc(100% - 30px);
+      //width: calc(100% - 30px);
       max-width: 100%;
-      max-height: 60vh;
+      //max-height: 60vh;
     }
 
     /deep/ .canvas_whiteboard_buttons {

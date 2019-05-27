@@ -46,7 +46,8 @@
 
 
         <ng-container *ngIf="imageUploadForm.get('image') as imageField">
-          <div class="canvas-wrapper" *ngIf="imageField.valid">
+          <div class="canvas-wrapper border-dark" *ngIf="imageField.valid"
+               [style.height.px]="canvasWhiteboard?.canvas?.nativeElement?.height + 30">
             <p>View and edit image</p>
             <canvas-whiteboard class="canvas-whiteboard" style="width: 100%; height: 400px"
                                [imageUrl]="imageField.value"

@@ -23,7 +23,7 @@ export class ImagesUploadComponent implements OnInit {
   isImageUploadInProgress = false;
 
   canvasWhiteboardOptions: CanvasWhiteboardOptions = {
-    aspectRatio: 0.5,
+    aspectRatio: 1,
     drawButtonEnabled: false,
     drawingEnabled: true,
     drawButtonText: 'Draw',
