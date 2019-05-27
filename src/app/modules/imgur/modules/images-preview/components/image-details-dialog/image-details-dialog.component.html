@@ -1,9 +1,11 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <h3 class="semi-bold text-center">{{item.title}}</h3>
-      <img class="img-fluid full-width" [src]="item.link" alt="Uploaded image"/>
-      <p>{{item.description}}</p>
-    </div>
-  </div>
-</div>
+<h2 class="text-center" mat-dialog-title>{{item.title}}</h2>
+<mat-dialog-content>
+  <img class="img-fluid full-width" [src]="item.link" alt="Uploaded image"/>
+  <hr/>
+  <p>{{item.description}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="accent" mat-dialog-close>
+    Close
+  </button>
+</mat-dialog-actions>
