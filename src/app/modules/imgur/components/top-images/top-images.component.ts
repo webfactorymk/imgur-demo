@@ -38,7 +38,6 @@ export class TopImagesComponent implements OnInit, OnDestroy {
 
       this._dataSubscription = this._imgurHttpService.getTopImages(page)
         .subscribe((items: Array<ImgurImage>) => {
-          console.log(items);
           this.pagedList.addItems(page, items);
 
           // Change the observable to have the newest values

@@ -1,4 +1,5 @@
-<div class="pointer justify-content-center img-thumbnail" *ngIf="item" (click)="notifyShowDetails()">
+<div class="pointer text-center justify-content-center img-thumbnail"
+     *ngIf="item" (click)="notifyShowDetails()">
 
   <ng-container *ngIf="item.isVideo()">
     <video class="img-thumbnail" autoplay controls loop [muted]="'muted'" preload="metadata">

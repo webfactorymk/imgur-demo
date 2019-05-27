@@ -42,10 +42,13 @@ export class ImgurHttpService {
    */
   private _parseAndFlattenGalleryImagesData(responseData: Array<any>): Array<ImgurImage> {
     return flatten(
-      responseData.map((imageJSON) => !imageJSON.is_album
-        ? new ImgurImage(imageJSON)
-        : this._parseAndFlattenGalleryImagesData(imageJSON.images)
-      )
+      responseData
+      // No need for nsfw items
+        .filter(imageJSON => !imageJSON.nsfw)
+        .map((imageJSON) => !imageJSON.is_album
+          ? new ImgurImage(imageJSON)
+          : this._parseAndFlattenGalleryImagesData(imageJSON.images)
+        )
     );
   }
 
