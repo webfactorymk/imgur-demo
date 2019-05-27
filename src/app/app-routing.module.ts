@@ -14,8 +14,7 @@ const routes: Routes = [
       },
       {path: '', redirectTo: 'imgur', pathMatch: 'full'},
       {path: '**', redirectTo: 'imgur', pathMatch: 'full'}
-    ],
-    canActivate: []
+    ]
   }
 ];
 

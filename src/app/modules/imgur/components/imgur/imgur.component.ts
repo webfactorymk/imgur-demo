@@ -9,8 +9,7 @@ import {delay} from 'rxjs/operators';
 
 @Component({
   selector: 'ngd-imgur',
-  templateUrl: './imgur.component.html',
-  styleUrls: ['./imgur.component.scss']
+  templateUrl: './imgur.component.html'
 })
 export class ImgurComponent implements OnDestroy {
   private _authTokenSubscription: Subscription;

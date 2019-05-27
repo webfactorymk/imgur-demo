@@ -3,8 +3,7 @@ import {environment} from '../../../../../../../environments/environment';
 
 @Component({
   selector: 'ngd-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   commenceAuthorization(): void {

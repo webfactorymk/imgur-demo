@@ -6,8 +6,7 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'ngd-callback',
-  templateUrl: './callback.component.html',
-  styleUrls: ['./callback.component.scss']
+  templateUrl: './callback.component.html'
 })
 export class CallbackComponent implements OnInit {
 

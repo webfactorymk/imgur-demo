@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "start": "",
+    "start": "npm run start",
     "e2e": "ng e2e"
   },
   "private": true,

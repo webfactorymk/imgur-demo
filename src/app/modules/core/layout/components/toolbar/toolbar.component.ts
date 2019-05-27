@@ -8,10 +8,10 @@ import {SidenavService} from '../../common/services/sidenav.service';
 })
 export class ToolbarComponent {
 
-  constructor(private _layoutService: SidenavService) {
+  constructor(private _sidenavService: SidenavService) {
   }
 
   toggleSidenav() {
-    this._layoutService.toggleSidenav();
+    this._sidenavService.toggleSidenav();
   }
 }

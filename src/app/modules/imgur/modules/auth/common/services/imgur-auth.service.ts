@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ImgurAuthService {
-  private static AUTH_TOKEN_STORAGE_KEY_NAME = 'imgur-auth-token';
+  static AUTH_TOKEN_STORAGE_KEY_NAME = 'imgur-auth-token';
 
   private _authTokenSubject: BehaviorSubject<AuthToken>;
   authToken$: Observable<AuthToken>;
@@ -28,13 +28,11 @@ export class ImgurAuthService {
 
   isLoggedIn(): boolean {
     const authToken: AuthToken = this.getCurrentAuthToken();
-    return authToken && !authToken.isTokenExpired();
+    return !!authToken && !authToken.isTokenExpired();
   }
 
   private _retrieveAuthDetails(): AuthToken {
     const storedToken = localStorage.getItem(ImgurAuthService.AUTH_TOKEN_STORAGE_KEY_NAME);
-    console.log('authToken in localStorage', storedToken);
-
     if (!storedToken) {
       return null;
     }
@@ -44,16 +42,15 @@ export class ImgurAuthService {
 
   login(authToken: AuthToken): void {
     this._storeAuthDetails(authToken);
-    this._authTokenSubject.next(authToken);
   }
 
   private _storeAuthDetails(authToken: AuthToken): void {
     if (!authToken || !authToken.accessToken) {
-      console.log('Invalid authToken, will not save in storage');
       return;
     }
 
     localStorage.setItem(ImgurAuthService.AUTH_TOKEN_STORAGE_KEY_NAME, JSON.stringify(authToken));
+    this._authTokenSubject.next(authToken);
   }
 
   logout(): void {

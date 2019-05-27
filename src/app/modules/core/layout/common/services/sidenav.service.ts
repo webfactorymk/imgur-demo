@@ -44,7 +44,7 @@ export class SidenavService implements OnDestroy {
     });
     this.sidenavState$ = this._sidenavState.asObservable();
 
-    this._sidenavItems = new BehaviorSubject([] );
+    this._sidenavItems = new BehaviorSubject([]);
     this.sidenavItems$ = this._sidenavItems.asObservable();
 
     this._subscribeToWebBreakpointObserver();
